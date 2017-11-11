@@ -11,10 +11,10 @@ import Animation from "./Animation"
 //import   './GameModule'
 
 export default class GameManager {
-  constructor(tiledMap, actionDeque) {
-    this.actionDeque = actionDeque;
+  constructor() {
+    this.actionDeque = global.actionDeque;
     this.ratio = 16 / 9;
-    this.tiledMap = tiledMap;
+    this.tiledMap = global.tiledMap;
     this.engine = new GraphicEngine('canvas', true);
     this.spriteManager = new SpriteManager(this.engine);
     this.state = new State();

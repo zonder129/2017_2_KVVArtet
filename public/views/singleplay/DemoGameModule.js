@@ -3,14 +3,13 @@ import Unit from "./Unit1";
 import Pathfinding from "./Pathfinding"
 import Background from "./Background";
 import GameManager from "./GameManager";
-import DungeonMapMaker from "./DungeonMapMaker";
 
 /*export default */
 export default class DemoGameModule {
     constructor() {
-      this.tiledMap = new DungeonMapMaker().dungeonMapMaker(Math.random() * 10 + 25);
-      this.actionDeque = [];
-      this.gameManager = new GameManager(this.tiledMap, this.actionDeque);
+      this.tiledMap = global.tiledMap;
+      this.actionDeque = global.actionDeque;
+      this.gameManager = new GameManager();
       this.WIDTH = 16;
       this.HEIGHT = 12;
       this.PARTYSIZE = 4;
