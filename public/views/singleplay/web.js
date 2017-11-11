@@ -1,5 +1,5 @@
 import Block from '../baseview'
-import GameModule from "./GameModule"
+import DemoGameModule from "./DemoGameModule";
 
 export default class SinglePlay extends Block {
   constructor() {
@@ -11,8 +11,8 @@ export default class SinglePlay extends Block {
   creation() {
     document.body.innerHTML = this.template;
 
-    let gamegame = new GameModule();
-    gamegame.gameGraphic();
+    let game = new DemoGameModule();
+    game.gamePreRender();
 
   }
 

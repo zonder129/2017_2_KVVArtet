@@ -158,14 +158,14 @@ export default class UnitManager {
             }
           });
         } else if (elem.isOccupied() && elem.unitOnTile.type != unit.type) {
-          console.log("Противник")
+          console.log("Противник");
           unit.skills.forEach(function(item, i) {
             if (item.name !== 'Move' && item.damage[0] > 0) {
               func(item);
             }
           });
         } else {
-          console.log("Карта")
+          console.log("Карта");
           unit.skills.forEach(function(item, i) {
             if (item.typeOfArea === "circle" || (item.name === 'Move' && elem.active)) {
               func(item);

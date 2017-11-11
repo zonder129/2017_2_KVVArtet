@@ -1,13 +1,16 @@
 import InitiativeLine from "./InitiativeLine"
 import Unit from "./Unit1";
 import Pathfinding from "./Pathfinding"
+import Background from "./Background";
+import GameManager from "./GameManager";
+import DungeonMapMaker from "./DungeonMapMaker";
 
 /*export default */
 export default class DemoGameModule {
-    constructor(tiledMap, gameManager, actionDeque) {
-      this.tiledMap = tiledMap;
-      this.actionDeque = actionDeque;
-      this.gameManager = gameManager
+    constructor() {
+      this.tiledMap = new DungeonMapMaker().dungeonMapMaker(Math.random() * 10 + 25);
+      this.actionDeque = [];
+      this.gameManager = new GameManager(this.tiledMap, this.actionDeque);
       this.WIDTH = 16;
       this.HEIGHT = 12;
       this.PARTYSIZE = 4;
@@ -22,6 +25,17 @@ export default class DemoGameModule {
       this.timer = 30000;
       this.intervalId = 0;
       this.interval = 100;
+    }
+
+    gameStart() {
+        this.gamePrepare();
+        this.startGameLoop();
+    }
+
+    gamePreRender() {
+        let back = new Background(this.tiledMap);
+        back.render();
+        this.gameManager.startGameRendering(this.gameStart.bind(this));
     }
 
     gamePrepare() {

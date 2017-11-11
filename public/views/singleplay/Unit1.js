@@ -13,12 +13,12 @@ export default class Unit {
     this.dodgeRate = 0.05;
     this.blockRate = 0.05;
     this.speed = 4;
-    this.skills = [new Skill()];
+    this.skills = [];
     this.type = "enemy"; //enemy player
     this.actionPoint = 2;
     this.lineId = 0;
     this.shooter = false;
-    this.skills[0].createSkill("Move", "Move to this position", "point", 1, [0,0], 0);
+    //this.skills[0].createSkill("Move", "Move to this position", "point", 1, [0,0], 0);
     this.deadMark = false;
   }
 
