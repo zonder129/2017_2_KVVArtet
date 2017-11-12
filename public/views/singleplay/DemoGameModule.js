@@ -1,13 +1,13 @@
 import InitiativeLine from "./InitiativeLine"
 import Unit from "./Unit1";
 import Pathfinding from "./Pathfinding"
+import Background from "./Background";
+import GameManager from "./GameManager";
 
 /*export default */
 export default class DemoGameModule {
-    constructor(tiledMap, gameManager, actionDeque) {
-      this.tiledMap = tiledMap;
-      this.actionDeque = actionDeque;
-      this.gameManager = gameManager
+    constructor() {
+      this.gameManager = new GameManager();
       this.WIDTH = 16;
       this.HEIGHT = 12;
       this.PARTYSIZE = 4;
@@ -22,6 +22,17 @@ export default class DemoGameModule {
       this.timer = 30000;
       this.intervalId = 0;
       this.interval = 100;
+    }
+
+    gameStart() {
+        this.gamePrepare();
+        this.startGameLoop();
+    }
+
+    gamePreRender() {
+        let back = new Background();
+        back.render();
+        this.gameManager.startGameRendering(this.gameStart.bind(this));
     }
 
     gamePrepare() {
@@ -52,10 +63,10 @@ export default class DemoGameModule {
             document.getElementById('time').style.fontSize = "2em";
             //где-то здесь есть работа с АИ
             //отрисовка скилов для каждого персонажа, информация для dropdown и позиций
-            if (this.actionDeque.length > 0) {
+            if (global.actionDeque.length > 0) {
                 console.log("action begin");
                 this.activeUnit.actionPoint--;
-                let action = this.actionDeque.shift();
+                let action = global.actionDeque.shift();
                 if (action.isMovement() && !action.target.isOccupied()) {
                     this.makeMove(action);
                 } else if (action.isAbility()) {
@@ -92,7 +103,7 @@ export default class DemoGameModule {
     makeMove(action) {
         console.log(action.sender.getInhabitant().name + " make move from [" + action.sender.xpos + "," + action.sender.ypos + "]" + " to [" + action.target.xpos + "," + action.target.ypos + "]");
         let toMove = action.sender.getInhabitant();
-        let pathfinding = new Pathfinding(action.sender, this.tiledMap);
+        let pathfinding = new Pathfinding(action.sender, global.tiledMap);
         let allMoves = pathfinding.possibleMoves();
         let path = [];
         let currentTile = action.target;
@@ -120,11 +131,11 @@ export default class DemoGameModule {
               for(let j = action.target.ypos-action.ability.area; j <= action.target.ypos + action.ability.area; j++) {
                   if(i >= 0 && j >= 0 && i < this.WIDTH && j < this.HEIGHT) {
                       console.log("WTF is " + i + " " + j);
-                      if(this.tiledMap[i][j].isOccupied() && this.tiledMap[i][j].getInhabitant().type === action.sender.getInhabitant().type) {
+                      if(global.tiledMap[i][j].isOccupied() && global.tiledMap[i][j].getInhabitant().type === action.sender.getInhabitant().type) {
                           console.log("this is AOE hill on someone: " + i + " " + j);
-                          healedAllies.push(this.tiledMap[i][j].getInhabitant());
-                          action.sender.getInhabitant().useHealSkill(this.tiledMap[i][j].getInhabitant(), action.ability);
-                          console.log("health end: " +this.tiledMap[i][j].getInhabitant().healthpoint);
+                          healedAllies.push(global.tiledMap[i][j].getInhabitant());
+                          action.sender.getInhabitant().useHealSkill(global.tiledMap[i][j].getInhabitant(), action.ability);
+                          console.log("health end: " +global.tiledMap[i][j].getInhabitant().healthpoint);
                       }
                   }
               }
@@ -152,15 +163,15 @@ export default class DemoGameModule {
                 for(let j = action.target.ypos-action.ability.area; j <= action.target.ypos + action.ability.area; j++) {
                     console.log("i: " + i + " j: " + j);
                     if(i > 0 && j > 0 && i < this.WIDTH && j < this.HEIGHT) {
-                        if(this.tiledMap[i][j].isOccupied()) {
-                            console.log(this.tiledMap[i][j].getInhabitant().name + " IS WOUNDED");
-                            action.sender.getInhabitant().useDamageSkill(this.tiledMap[i][j].getInhabitant(), action.ability);
-                            if(this.tiledMap[i][j].getInhabitant().deadMark === false) {
-                                if (this.tiledMap[i][j].getInhabitant().isDead()) {
-                                    deadEnemies.push(this.tiledMap[i][j].getInhabitant());
-                                    this.tiledMap[i][j].getInhabitant().deadMark = true;
+                        if(global.tiledMap[i][j].isOccupied()) {
+                            console.log(global.tiledMap[i][j].getInhabitant().name + " IS WOUNDED");
+                            action.sender.getInhabitant().useDamageSkill(global.tiledMap[i][j].getInhabitant(), action.ability);
+                            if(global.tiledMap[i][j].getInhabitant().deadMark === false) {
+                                if (global.tiledMap[i][j].getInhabitant().isDead()) {
+                                    deadEnemies.push(global.tiledMap[i][j].getInhabitant());
+                                    global.tiledMap[i][j].getInhabitant().deadMark = true;
                                 } else {
-                                    woundedEnemies.push(this.tiledMap[i][j].getInhabitant());
+                                    woundedEnemies.push(global.tiledMap[i][j].getInhabitant());
                                 }
                                 //console.log("health end: " + action.target.getInhabitant().healthpoint);
                             }
@@ -251,13 +262,13 @@ export default class DemoGameModule {
             while (true) {
                 randRow = Math.floor(Math.random() * this.HEIGHT);
                 randCol = Math.floor(Math.random() * 3); //первые три столбца поля
-                if (this.tiledMap[randCol][randRow].isWall === this.NOTWALL && !this.tiledMap[randCol][randRow].isOccupied()) {
+                if (global.tiledMap[randCol][randRow].isWall === this.NOTWALL && !global.tiledMap[randCol][randRow].isOccupied()) {
                     break;
                 }
             }
             players[i].xpos = randCol;
             players[i].ypos = randRow;
-            this.tiledMap[randCol][randRow].occupy(players[i]);
+            global.tiledMap[randCol][randRow].occupy(players[i]);
         }
     }
 
@@ -268,13 +279,13 @@ export default class DemoGameModule {
           while (true) {
             randRow = Math.floor(Math.random() * this.HEIGHT);
             randCol = Math.floor(Math.random() * 3) + this.WIDTH - 3; //последние три столбца поля
-            if (this.tiledMap[randCol][randRow].isWall === this.NOTWALL && !this.tiledMap[randCol][randRow].isOccupied()) {
+            if (global.tiledMap[randCol][randRow].isWall === this.NOTWALL && !global.tiledMap[randCol][randRow].isOccupied()) {
                 break;
             }
           }
           enemies[i].xpos = randCol;
           enemies[i].ypos = randRow;
-          this.tiledMap[randCol][randRow].occupy(enemies[i]);
+          global.tiledMap[randCol][randRow].occupy(enemies[i]);
         }
     }
 
@@ -313,7 +324,7 @@ export default class DemoGameModule {
     }
 
     sendPossibleMoves() {
-        let pathfinding = new Pathfinding(this.tiledMap[this.activeUnit.xpos][this.activeUnit.ypos], this.tiledMap);
+        let pathfinding = new Pathfinding(global.tiledMap[this.activeUnit.xpos][this.activeUnit.ypos], global.tiledMap);
         let allMoves = pathfinding.possibleMoves();
         let path = [];
         for(let key of allMoves.keys()){

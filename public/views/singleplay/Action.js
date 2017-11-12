@@ -9,7 +9,7 @@ export default class Action{
 
 	isMovement() {
 		// console.log(this.target + " - target and this.ability - " + this.ability);
-		return this.ability.name === "Move";
+		return this.target !== null && this.ability === null;
 	}
 
 	isSkip() {
