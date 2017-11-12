@@ -7,14 +7,12 @@ import AnimationManager from './AnimationManager'
 import UnitManager from './UnitManager'
 import Animation from "./Animation"
 
-//import {this.tiledMap,test} from './GameModule'
+//import {global.tiledMap,test} from './GameModule'
 //import   './GameModule'
 
 export default class GameManager {
   constructor() {
-    this.actionDeque = global.actionDeque;
     this.ratio = 16 / 9;
-    this.tiledMap = global.tiledMap;
     this.engine = new GraphicEngine('canvas', true);
     this.spriteManager = new SpriteManager(this.engine);
     this.state = new State();
@@ -72,7 +70,7 @@ export default class GameManager {
             this.initEvents();
             let animation = new Animation(this);
             this.animtaionManager = new AnimationManager(animation, this.spriteManager, this.activeTile, this.state, animations);
-            this.unitManager = new UnitManager(animation, this.actionDeque, this.tiledMap, this.animtaionManager, this.spriteManager, this.activeTile, this.state, entities, textures, conditions);
+            this.unitManager = new UnitManager(animation, this.animtaionManager, this.spriteManager, this.activeTile, this.state, entities, textures, conditions);
             this.engine.render();
           }, callback);
         });
@@ -87,7 +85,7 @@ export default class GameManager {
       if (x >= 0.2 && x <= 0.8 && y >= 0.065 && y <= 0.865 && document.getElementById('menu').hidden && !this.state.AnimationOnMap) {
         let i = Math.floor(((x - 0.2) / 0.6) / (1 / 16));
         let j = Math.floor(((y - 0.065) / 0.8) / (1 / 12));
-        if (this.tiledMap[i][j].active) {
+        if (global.tiledMap[i][j].active) {
           this.spriteManager.getSprite(this.activeElem).setTrans(Utils.translationOnMap(j, i));
         } else {
           this.spriteManager.getSprite(this.activeElem).setTrans([-2, -2]);

@@ -4,8 +4,7 @@ import Loader from './Loader'
 //import rere from '/views/singleplay/textures/wall.jpg';
 
 export default class Background {
-  constructor(map) {
-    this.map = map;
+  constructor() {
     this.ratio = 16 / 9;
     this.engine = new GraphicEngine('background', false);
   }
@@ -13,7 +12,7 @@ export default class Background {
     InitMapAndSprites() {
         this.engine.addSprite([0, 0], this.textures[2], Utils.madeRectangle(-1, 1, 1, -1));
         let coord = Utils.madeRectangle(0, 0, 1.2 / 16, -(1.2 / 16) * this.ratio);
-        this.map.forEach(function(item, j) {
+        global.tiledMap.forEach(function(item, j) {
             item.forEach(function(value, i) {
                 if (value.isWall) {
                     this.engine.addSprite(Utils.translationOnMap(i, j), this.textures[0], coord);

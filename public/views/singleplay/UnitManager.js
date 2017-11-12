@@ -3,12 +3,10 @@ import Utils from "./Utils"
 import Action from "./Action"
 
 export default class UnitManager {
-  constructor(Animation, actionDeque, tiledMap, animationManager, spriteManager, activeTile, state, entities, textures, conditions) {
+  constructor(Animation, animationManager, spriteManager, activeTile, state, entities, textures, conditions) {
     this.Animation = Animation;
     this.units = [];
     this.ratio = 16/9;
-    this.actionDeque = actionDeque
-    this.tiledMap = tiledMap;
     this.spriteManager = spriteManager;
     this.animationManager = animationManager;
     this.entities = entities;
@@ -135,16 +133,16 @@ export default class UnitManager {
         div.style.left = event.clientX - 40 + 'px';
         div.style.top = event.clientY - 15 + 'px';
         div.appendChild(ul);
-        let elem = this.tiledMap[i][j];
+        let elem = global.tiledMap[i][j];
         let func = function(item) {
           let li = document.createElement('li');
           li.innerHTML = item.name;
           li.onclick = function() {
             let action = new Action();
-            action.sender = this.tiledMap[unit.xpos][unit.ypos];
-            action.target = this.tiledMap[i][j];
+            action.sender = global.tiledMap[unit.xpos][unit.ypos];
+            action.target = global.tiledMap[i][j];
             action.ability = item;
-            this.actionDeque.push(action);
+            global.actionDeque.push(action);
             this.dropMenu.remove();
             this.dropMenu = 0;
           }.bind(this);
@@ -208,7 +206,7 @@ export default class UnitManager {
 
   showPossibleMoves(path) {
     for (let i = 0; i < this.possibleMoves.length; i++) {
-      this.tiledMap[this.possibleMoves[i].xpos][this.possibleMoves[i].ypos].active = false;
+      global.tiledMap[this.possibleMoves[i].xpos][this.possibleMoves[i].ypos].active = false;
       this.spriteManager.deleteSprite(this.possibleMoves[i].id);
     }
     this.possibleMoves = [];
@@ -218,7 +216,7 @@ export default class UnitManager {
         xpos: path[i].xpos,
         ypos: path[i].ypos
       });
-      this.tiledMap[path[i].xpos][path[i].ypos].active = true;
+      global.tiledMap[path[i].xpos][path[i].ypos].active = true;
     }
     this.units.forEach((unit) => {
       this.spriteManager.getSprite(unit.entity.mapId).order = unit.ypos;
