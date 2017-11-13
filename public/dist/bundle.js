@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 13);
+/******/ 	return __webpack_require__(__webpack_require__.s = 14);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -114,7 +114,6 @@ class Router {
                     this.go(pathname);
                     console.log(pathname);
                 }
-                this.go(window.location.pathname);
             }
         });
         this.go(window.location.pathname);
@@ -375,10 +374,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signup", function() { return signup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signin", function() { return signin; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseview__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__blocks_autheficate_registrationAuth__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__blocks_autheficate_loginAuth__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__blocks_autheficate_registrationAuth__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__blocks_autheficate_loginAuth__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_router__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__servises_user_service__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__servises_user_service__ = __webpack_require__(17);
 
 
 
@@ -700,31 +699,31 @@ class Input extends __WEBPACK_IMPORTED_MODULE_0__block_block__["a" /* default */
 
 "use strict";
 class Skill {
-	constructor() {
-		this.name = "name";
-		this.description = "description";
-		this.typeOfArea = "point"; //point, circle
-		this.area = 1;
-		this.damage = [0, 0];
-		this.cooldown = 0;
-	}
+    constructor() {
+        this.name = 'name';
+        this.description = 'description';
+        this.typeOfArea = 'point'; //point, circle
+        this.area = 1;
+        this.damage = [0, 0];
+        this.cooldown = 0;
+    }
 
-	createSkill(name, description, typeOfArea, area, damage, cooldown) {
-		this.name = name;
-		this.description = description;
-		this.typeOfArea = typeOfArea;
-		this.area = area;
-		this.damage = damage;
-		this.cooldown = cooldown;
-	}
+    createSkill(name, description, typeOfArea, area, damage, cooldown) {
+        this.name = name;
+        this.description = description;
+        this.typeOfArea = typeOfArea;
+        this.area = area;
+        this.damage = damage;
+        this.cooldown = cooldown;
+    }
 
-	getDesciption() {
-		if (damage[1] >= 0) {
-			return this.name + "\nDam: " + this.damage[0] + "-" + this.damage[1] + " Type: " + this.typeOfArea + " with area: " + this.area + "\n" + " Cooldown: " + this.cooldown + "\n" + this.description;
-		}
+    getDesciption() {
+        if (damage[1] >= 0) {
+            return this.name + '\nDam: ' + this.damage[0] + '-' + this.damage[1] + ' Type: ' + this.typeOfArea + ' with area: ' + this.area + '\n' + ' Cooldown: ' + this.cooldown + '\n' + this.description;
+        }
 
-		return name + "\nHeal: " + Math.abs(this.damage[0]) + "-" + Math.abs(this.damage[1]) + " Type: " + this.typeOfArea + " with area: " + this.area + "\n" + " Cooldown: " + this.cooldown + "\n" + this.description;
-	}
+        return name + '\nHeal: ' + Math.abs(this.damage[0]) + '-' + Math.abs(this.damage[1]) + ' Type: ' + this.typeOfArea + ' with area: ' + this.area + '\n' + ' Cooldown: ' + this.cooldown + '\n' + this.description;
+    }
 
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Skill;
@@ -735,11 +734,11 @@ class Skill {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Shaders__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Program__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Shaders__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Program__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Utils__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Sprite__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__global_js__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Sprite__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__global_js__ = __webpack_require__(35);
 
 
 
@@ -815,6 +814,38 @@ class GraphicEngine {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+class Tile {
+	constructor() {
+		this.xpos = null;
+		this.ypos = null;
+		this.unitOnTile = null;
+		this.isWall = null;
+	}
+
+	getInhabitant() {
+		return this.unitOnTile;
+	}
+
+	occupy(unit) {
+		this.unitOnTile = unit;
+	}
+
+	unoccupy() {
+		this.unitOnTile = null;
+	}
+
+	isOccupied() {
+		return this.unitOnTile !== null;
+	}
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = Tile;
+
+
+/***/ }),
+/* 13 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 
 class Loader {
   constructor(paths, gl) {
@@ -858,18 +889,18 @@ class Loader {
 
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_router__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__views_mainpage_mainpage__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__views_login_login__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__views_signup_registration__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__views_info_info__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__views_game_game__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__views_singleplay_web__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__views_mainpage_mainpage__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__views_login_login__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__views_signup_registration__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__views_info_info__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__views_game_game__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__views_singleplay_web__ = __webpack_require__(26);
 
 
 
@@ -886,11 +917,11 @@ function requireAll(r) {
 }
 
 __webpack_require__(6);
+__webpack_require__(46);
 __webpack_require__(47);
-__webpack_require__(48);
 
+requireAll(__webpack_require__(48));
 requireAll(__webpack_require__(49));
-requireAll(__webpack_require__(50));
 //requireAll(require.context('./views/', true, /\.(js)$/));
 //requireAll(require.context('./images/', true, /\.(png)$/));
 //requireAll(require.context('./views/singleplay/textures', true, /\.(png)$/));
@@ -908,7 +939,7 @@ const router = new __WEBPACK_IMPORTED_MODULE_0__modules_router__["default"]();
 router.register('/', mainMenu).register('/login', login).register('/signup', signup).register('/info', info).register('/game', game).register('/singleplay', single).navigate();
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -944,7 +975,7 @@ let RegistrationValidate = (login, email, password, password_confirm) => {
 /* harmony default export */ __webpack_exports__["a"] = (RegistrationValidate);
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -971,7 +1002,7 @@ let LoginValidate = (login, password) => {
 /* harmony default export */ __webpack_exports__["a"] = (LoginValidate);
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1045,12 +1076,12 @@ class UserService {
 /* harmony default export */ __webpack_exports__["a"] = (UserService);
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseview__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__main_page_css__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__main_page_css__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__main_page_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__main_page_css__);
 
 
@@ -1121,13 +1152,13 @@ class MainPage extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */
 /* harmony default export */ __webpack_exports__["a"] = (MainPage);
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1206,7 +1237,7 @@ class Login extends __WEBPACK_IMPORTED_MODULE_0__blocks_block_block__["a" /* def
 /* harmony default export */ __webpack_exports__["a"] = (Login);
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1294,12 +1325,12 @@ class Registration extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* defaul
 /* harmony default export */ __webpack_exports__["a"] = (Registration);
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseview__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__info_css__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__info_css__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__info_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__info_css__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_router__ = __webpack_require__(0);
 
@@ -1340,18 +1371,18 @@ class Info extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */] {
 /* harmony default export */ __webpack_exports__["a"] = (Info);
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseview__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__game_css__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__game_css__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__game_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__game_css__);
 
 
@@ -1384,48 +1415,48 @@ class Game extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */] {
 /* harmony default export */ __webpack_exports__["a"] = (Game);
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 25 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseview__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DemoGameModule__ = __webpack_require__(26);
-
-
-
-class SinglePlay extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */] {
-  constructor() {
-    super();
-
-    this.template = __webpack_require__(46);
-  }
-
-  creation() {
-    document.body.innerHTML = this.template;
-
-    let game = new __WEBPACK_IMPORTED_MODULE_1__DemoGameModule__["a" /* default */]();
-    game.gamePreRender();
-  }
-
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = SinglePlay;
-
 
 /***/ }),
 /* 26 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__InitiativeLine__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Unit1__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Pathfinding__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Background__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__baseview__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__DemoGameModule__ = __webpack_require__(27);
+
+
+
+class SinglePlay extends __WEBPACK_IMPORTED_MODULE_0__baseview__["a" /* default */] {
+    constructor() {
+        super();
+
+        this.template = __webpack_require__(45);
+    }
+
+    creation() {
+        document.body.innerHTML = this.template;
+
+        let game = new __WEBPACK_IMPORTED_MODULE_1__DemoGameModule__["a" /* default */]();
+        game.gamePreRender();
+    }
+
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = SinglePlay;
+
+
+/***/ }),
+/* 27 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__InitiativeLine__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Unit__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Pathfinding__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Background__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__GameManager__ = __webpack_require__(37);
 
 
@@ -1470,7 +1501,7 @@ class DemoGameModule {
         this.initiativeLine.PushEveryone(this.players, this.enemies);
         this.setPlayersPositions(this.players);
         this.setEnemiesPositions(this.enemies);
-        console.log("Everyone on positions: ");
+        console.log('Everyone on positions: ');
         //отрисовка персонажей
 
         for (let i = 0; i < this.PARTYSIZE + this.ENEMIESSIZE; i++) {
@@ -1479,7 +1510,7 @@ class DemoGameModule {
         }
 
         this.activeUnit = this.initiativeLine.CurrentUnit();
-        console.log(this.activeUnit.name + " - let's start with you!");
+        console.log(this.activeUnit.name + ' - let\'s start with you!');
         this.gameManager.unitManager.activeUnit(this.activeUnit);
         this.sendPossibleMoves();
     }
@@ -1487,18 +1518,18 @@ class DemoGameModule {
     gameLoop() {
         if (!this.isPartyDead() && !this.isEnemiesDead()) {
             this.timer -= this.interval;
-            document.getElementById('time').innerHTML = "00:" + Math.ceil(this.timer / 1000);
-            document.getElementById('time').style.fontSize = "2em";
+            document.getElementById('time').innerHTML = '00:' + Math.ceil(this.timer / 1000);
+            document.getElementById('time').style.fontSize = '2em';
             //где-то здесь есть работа с АИ
             //отрисовка скилов для каждого персонажа, информация для dropdown и позиций
             if (global.actionDeque.length > 0) {
-                console.log("action begin");
+                console.log('action begin');
                 this.activeUnit.actionPoint--;
                 let action = global.actionDeque.shift();
                 if (action.isMovement() && !action.target.isOccupied()) {
                     this.makeMove(action);
                 } else if (action.isAbility()) {
-                    console.log("this is ability: " + action.ability.name);
+                    console.log('this is ability: ' + action.ability.name);
                     if (action.ability.damage[1] < 0) {
                         this.makeHill(action);
                     } else if (action.ability.damage[1] > 0) {
@@ -1512,7 +1543,7 @@ class DemoGameModule {
                     this.sendPossibleMoves();
                 }
             }
-            console.log("action point: " + this.activeUnit.actionPoint);
+            console.log('action point: ' + this.activeUnit.actionPoint);
 
             if (this.activeUnit.actionPoint === 0 || Math.ceil(this.timer / 1000) === 0 || this.activeUnit.isDead()) {
                 this.skipAction();
@@ -1529,7 +1560,7 @@ class DemoGameModule {
     }
 
     makeMove(action) {
-        console.log(action.sender.getInhabitant().name + " make move from [" + action.sender.xpos + "," + action.sender.ypos + "]" + " to [" + action.target.xpos + "," + action.target.ypos + "]");
+        console.log(action.sender.getInhabitant().name + ' make move from [' + action.sender.xpos + ',' + action.sender.ypos + ']' + ' to [' + action.target.xpos + ',' + action.target.ypos + ']');
         let toMove = action.sender.getInhabitant();
         let pathfinding = new __WEBPACK_IMPORTED_MODULE_2__Pathfinding__["a" /* default */](action.sender, global.tiledMap);
         let allMoves = pathfinding.possibleMoves();
@@ -1537,7 +1568,7 @@ class DemoGameModule {
         let currentTile = action.target;
         while (allMoves.get(currentTile) !== null) {
             path.push(currentTile);
-            console.log("current tile - [" + currentTile.xpos + "]" + "[" + currentTile.ypos + "]");
+            console.log('current tile - [' + currentTile.xpos + ']' + '[' + currentTile.ypos + ']');
             currentTile = allMoves.get(currentTile);
         }
         console.log(path);
@@ -1546,24 +1577,24 @@ class DemoGameModule {
         action.target.occupy(toMove);
         this.activeUnit.xpos = action.target.xpos;
         this.activeUnit.ypos = action.target.ypos;
-        console.log("check on unoccupy: " + action.sender.isOccupied());
-        console.log("check on occupy: " + action.target.isOccupied());
+        console.log('check on unoccupy: ' + action.sender.isOccupied());
+        console.log('check on occupy: ' + action.target.isOccupied());
     }
 
     makeHill(action) {
         let healedAllies = [];
         //AOE HILL
-        if (action.ability.typeOfArea === "circle") {
-            console.log("THIS IS AOE HILL");
+        if (action.ability.typeOfArea === 'circle') {
+            console.log('THIS IS AOE HILL');
             for (let i = action.target.xpos - action.ability.area; i <= action.target.xpos + action.ability.area; i++) {
                 for (let j = action.target.ypos - action.ability.area; j <= action.target.ypos + action.ability.area; j++) {
                     if (i >= 0 && j >= 0 && i < this.WIDTH && j < this.HEIGHT) {
-                        console.log("WTF is " + i + " " + j);
+                        console.log('WTF is ' + i + ' ' + j);
                         if (global.tiledMap[i][j].isOccupied() && global.tiledMap[i][j].getInhabitant().type === action.sender.getInhabitant().type) {
-                            console.log("this is AOE hill on someone: " + i + " " + j);
+                            console.log('this is AOE hill on someone: ' + i + ' ' + j);
                             healedAllies.push(global.tiledMap[i][j].getInhabitant());
                             action.sender.getInhabitant().useHealSkill(global.tiledMap[i][j].getInhabitant(), action.ability);
-                            console.log("health end: " + global.tiledMap[i][j].getInhabitant().healthpoint);
+                            console.log('health end: ' + global.tiledMap[i][j].getInhabitant().healthpoint);
                         }
                     }
                 }
@@ -1571,7 +1602,7 @@ class DemoGameModule {
         } else {
             action.sender.getInhabitant().useHealSkill(action.target.getInhabitant(), action.ability);
             healedAllies.push(action.target.getInhabitant());
-            console.log("health end: " + action.target.getInhabitant().healthpoint);
+            console.log('health end: ' + action.target.getInhabitant().healthpoint);
         }
         this.gameManager.unitManager.unitAttack(action.ability.name, action.sender, action.target, healedAllies);
     }
@@ -1579,20 +1610,20 @@ class DemoGameModule {
     makeDamage(action) {
         let woundedEnemies = [];
         let deadEnemies = [];
-        console.log(action.sender.getInhabitant().name + " make damage");
-        console.log("this is damage: " + action.ability.name);
+        console.log(action.sender.getInhabitant().name + ' make damage');
+        console.log('this is damage: ' + action.ability.name);
         // console.log("health begin: " + action.target.getInhabitant().healthpoint);
 
         //AOE DAMAGE
-        if (action.ability.typeOfArea === "circle") {
-            console.log("THIS IS AOE DAMAGE");
-            console.log("target on " + action.target.xpos + " " + action.target.ypos);
+        if (action.ability.typeOfArea === 'circle') {
+            console.log('THIS IS AOE DAMAGE');
+            console.log('target on ' + action.target.xpos + ' ' + action.target.ypos);
             for (let i = action.target.xpos - action.ability.area; i <= action.target.xpos + action.ability.area; i++) {
                 for (let j = action.target.ypos - action.ability.area; j <= action.target.ypos + action.ability.area; j++) {
-                    console.log("i: " + i + " j: " + j);
+                    console.log('i: ' + i + ' j: ' + j);
                     if (i > 0 && j > 0 && i < this.WIDTH && j < this.HEIGHT) {
                         if (global.tiledMap[i][j].isOccupied()) {
-                            console.log(global.tiledMap[i][j].getInhabitant().name + " IS WOUNDED");
+                            console.log(global.tiledMap[i][j].getInhabitant().name + ' IS WOUNDED');
                             action.sender.getInhabitant().useDamageSkill(global.tiledMap[i][j].getInhabitant(), action.ability);
                             if (global.tiledMap[i][j].getInhabitant().deadMark === false) {
                                 if (global.tiledMap[i][j].getInhabitant().isDead()) {
@@ -1614,7 +1645,7 @@ class DemoGameModule {
             } else {
                 woundedEnemies.push(action.target.getInhabitant());
             }
-            console.log("health end: " + action.target.getInhabitant().healthpoint);
+            console.log('health end: ' + action.target.getInhabitant().healthpoint);
         }
 
         if (deadEnemies.length > 0) {
@@ -1625,7 +1656,7 @@ class DemoGameModule {
                 this.initiativeLine.RemoveUnit(deadEnemies[i]);
             } //graph.deleteFromLowBar(action.target.getInhabitant().barIndex);
         } else {
-            console.log("SOMEONE GET WOUNDED: ", woundedEnemies);
+            console.log('SOMEONE GET WOUNDED: ', woundedEnemies);
             this.gameManager.unitManager.unitAttack(action.ability.name, action.sender, action.target, woundedEnemies);
         }
     }
@@ -1647,14 +1678,14 @@ class DemoGameModule {
 
     generatePlayers() {
         let newPlayers = [];
-        let Roderick = new __WEBPACK_IMPORTED_MODULE_1__Unit1__["a" /* default */]();
-        Roderick.makeWarrior("Roderick");
-        let Gendalf = new __WEBPACK_IMPORTED_MODULE_1__Unit1__["a" /* default */]();
-        Gendalf.makeMage("Gendalf");
-        let Garreth = new __WEBPACK_IMPORTED_MODULE_1__Unit1__["a" /* default */]();
-        Garreth.makeThief("Garreth");
-        let Ethelstan = new __WEBPACK_IMPORTED_MODULE_1__Unit1__["a" /* default */]();
-        Ethelstan.makePriest("Ethelstan");
+        let Roderick = new __WEBPACK_IMPORTED_MODULE_1__Unit__["a" /* default */]();
+        Roderick.makeWarrior('Roderick');
+        let Gendalf = new __WEBPACK_IMPORTED_MODULE_1__Unit__["a" /* default */]();
+        Gendalf.makeMage('Gendalf');
+        let Garreth = new __WEBPACK_IMPORTED_MODULE_1__Unit__["a" /* default */]();
+        Garreth.makeThief('Garreth');
+        let Ethelstan = new __WEBPACK_IMPORTED_MODULE_1__Unit__["a" /* default */]();
+        Ethelstan.makePriest('Ethelstan');
 
         newPlayers.push(Roderick);
         newPlayers.push(Gendalf);
@@ -1668,12 +1699,12 @@ class DemoGameModule {
         let newEnemies = [];
         for (let i = 0; i < this.ENEMIESSIZE; i++) {
             console.log(i);
-            let Skeleton = new __WEBPACK_IMPORTED_MODULE_1__Unit1__["a" /* default */]();
+            let Skeleton = new __WEBPACK_IMPORTED_MODULE_1__Unit__["a" /* default */]();
             let texture;
             if (i % 2 === 0) {
-                texture = "skeleton1";
+                texture = 'skeleton1';
             } else {
-                texture = "skeleton2";
+                texture = 'skeleton2';
             }
             Skeleton.makeSkeleton(texture);
             newEnemies.push(Skeleton);
@@ -1761,9 +1792,9 @@ class DemoGameModule {
 
     beginTurn() {
         this.activeUnit = this.initiativeLine.NextUnit();
-        console.log("This turn: ");
+        console.log('This turn: ');
         console.log(this.initiativeLine.ShowEveryoneInLine());
-        console.log(this.activeUnit.name + " = now your move! Cause initiative:" + this.activeUnit.initiative);
+        console.log(this.activeUnit.name + ' = now your move! Cause initiative:' + this.activeUnit.initiative);
         this.activeUnit.actionPoint = 2;
         this.gameManager.unitManager.activeUnit(this.activeUnit);
         this.sendPossibleMoves();
@@ -1776,7 +1807,7 @@ class DemoGameModule {
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(3)))
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1849,154 +1880,154 @@ class InitiativeLine {
 
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Skill1__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Skill__ = __webpack_require__(10);
 
 class Unit {
-  constructor() {
-    this.name = "noname";
-    this.class = "noname";
-    this.xpos = 0;
-    this.ypos = 0;
-    this.healthpoint = [0, 0];
-    this.armor = 0;
-    this.damage = [0, 0];
-    this.initiative = 0;
-    this.criticalRate = 0.05;
-    this.dodgeRate = 0.05;
-    this.blockRate = 0.05;
-    this.speed = 4;
-    this.skills = [];
-    this.type = "enemy"; //enemy player
-    this.actionPoint = 2;
-    this.lineId = 0;
-    this.shooter = false;
-    //this.skills[0].createSkill("Move", "Move to this position", "point", 1, [0,0], 0);
-    this.deadMark = false;
-  }
-
-  makeWarrior(name) {
-    this.name = name;
-    this.class = "warrior";
-    this.healthpoint = [150, 150];
-    this.armor = 20;
-    this.damage = [35, 40];
-    this.initiative = 10;
-    let attackSkill = new __WEBPACK_IMPORTED_MODULE_0__Skill1__["a" /* default */]();
-    attackSkill.createSkill("Attack", "Deals damage in close combat", "point", 1, this.damage, 0);
-    let firstSkill = new __WEBPACK_IMPORTED_MODULE_0__Skill1__["a" /* default */]();
-    firstSkill.createSkill("Shield Strike", "Smash enemy with a shield, knocking him down for 1 turn", "point", 1, this.damage, 2);
-    let secondSkill = new __WEBPACK_IMPORTED_MODULE_0__Skill1__["a" /* default */]();
-    secondSkill.createSkill("Heavy blow", "Attack your enemy with double damage", "point", 1, [this.damage[0] * 2, this.damage[1] * 2], 3);
-    this.skills.push(attackSkill, firstSkill, secondSkill);
-    this.type = "player";
-  }
-
-  makeMage(name) {
-    this.name = name;
-    this.class = "mage";
-    this.healthpoint = [100, 100];
-    this.armor = 10;
-    this.damage = [30, 40];
-    this.initiative = 11;
-    let attackSkill = new __WEBPACK_IMPORTED_MODULE_0__Skill1__["a" /* default */]();
-    attackSkill.createSkill("Attack", "Deals damage on distance", "point", 1, this.damage, 0);
-    let firstSkill = new __WEBPACK_IMPORTED_MODULE_0__Skill1__["a" /* default */]();
-    firstSkill.createSkill("Thunderbolt", "An electrical jolt deals air damage to target character, knocking him down for 1 turn", "point", 1, this.damage, 2);
-    let secondSkill = new __WEBPACK_IMPORTED_MODULE_0__Skill1__["a" /* default */]();
-    secondSkill.createSkill("Fire ball", "Hurl a fiery sphere that will explode", "circle", 2, this.damage, 2);
-    this.skills.push(attackSkill, firstSkill, secondSkill);
-    this.type = "player";
-    this.shooter = true;
-  }
-
-  makeThief(name) {
-    this.name = name;
-    this.class = "thief";
-    this.healthpoint = [125, 125];
-    this.armor = 15;
-    this.damage = [40, 60];
-    this.initiative = 12;
-    let attackSkill = new __WEBPACK_IMPORTED_MODULE_0__Skill1__["a" /* default */]();
-    attackSkill.createSkill("Attack", "Deals damage in close combat", "point", 1, this.damage, 0);
-    let firstSkill = new __WEBPACK_IMPORTED_MODULE_0__Skill1__["a" /* default */]();
-    firstSkill.createSkill("Sawtooth knife", "Attack enemy with guaranteed critical hit", "point", 1, [this.damage[0] * 2, this.damage[1] * 2], 3);
-    let secondSkill = new __WEBPACK_IMPORTED_MODULE_0__Skill1__["a" /* default */]();
-    secondSkill.createSkill("Blade flurry", "Attack enemies around and deals 100% damage", "circle", 1, this.damage, 2);
-    this.skills.push(attackSkill, firstSkill, secondSkill);
-    this.type = "player";
-  }
-
-  makePriest(name) {
-    this.name = name;
-    this.class = "priest";
-    this.healthpoint = [100, 100];
-    this.armor = 10;
-    this.damage = [-20, -30];
-    this.initiative = 11;
-    let attackSkill = new __WEBPACK_IMPORTED_MODULE_0__Skill1__["a" /* default */]();
-    attackSkill.createSkill("Heal", "Heal with healing power on distance", "point", 1, this.damage, 0);
-    let firstSkill = new __WEBPACK_IMPORTED_MODULE_0__Skill1__["a" /* default */]();
-    firstSkill.createSkill("Massive Heal", "Heal all your units in area with 100% healing power", "circle", 1, this.damage, 3);
-    let secondSkill = new __WEBPACK_IMPORTED_MODULE_0__Skill1__["a" /* default */]();
-    secondSkill.createSkill("Holly wrath", "Deal 200% healing power to cursed creatures", "point", 1, [this.damage[0] * -2, this.damage[1] * -2], 2);
-    this.skills.push(attackSkill, firstSkill, secondSkill);
-    this.type = "player";
-    this.shooter = true;
-  }
-
-  makeSkeleton(textureName) {
-    this.name = "Skeleton";
-    this.class = textureName;
-    this.healthpoint = [150, 150];
-    this.armor = 5;
-    this.damage = [35, 40];
-    this.initiative = 10;
-
-    let attackSkill = new __WEBPACK_IMPORTED_MODULE_0__Skill1__["a" /* default */]();
-    attackSkill.createSkill("Attack", "Deals damage", "point", 1, this.damage, 0);
-    this.skills.push(attackSkill);
-  }
-
-  isDead() {
-    if (this.healthpoint[0] <= 0) {
-      return true;
-    }
-  }
-
-  useDamageSkill(unit, skill) {
-
-    let currentSkillDamage = Math.floor(Math.random() * (skill.damage[1] - skill.damage[0])) + skill.damage[0];
-
-    if (Math.random() < this.criticalRate) {
-      currentSkillDamage *= 2;
+    constructor() {
+        this.name = 'noname';
+        this.class = 'noname';
+        this.xpos = 0;
+        this.ypos = 0;
+        this.healthpoint = [0, 0];
+        this.armor = 0;
+        this.damage = [0, 0];
+        this.initiative = 0;
+        this.criticalRate = 0.05;
+        this.dodgeRate = 0.05;
+        this.blockRate = 0.05;
+        this.speed = 4;
+        this.skills = [new __WEBPACK_IMPORTED_MODULE_0__Skill__["a" /* default */]()];
+        this.type = 'enemy'; //enemy player
+        this.actionPoint = 2;
+        this.lineId = 0;
+        this.shooter = false;
+        this.skills[0].createSkill('Move', 'Move to this position', 'point', 1, [0, 0], 0);
+        this.deadMark = false;
     }
 
-    if (Math.random() < unit.dodgeRate) {
-      currentSkillDamage = 0;
-    } else if (Math.random() < unit.blockRate) {
-      currentSkillDamage *= 0.3;
+    makeWarrior(name) {
+        this.name = name;
+        this.class = 'warrior';
+        this.healthpoint = [150, 150];
+        this.armor = 20;
+        this.damage = [35, 40];
+        this.initiative = 10;
+        let attackSkill = new __WEBPACK_IMPORTED_MODULE_0__Skill__["a" /* default */]();
+        attackSkill.createSkill('Attack', 'Deals damage in close combat', 'point', 1, this.damage, 0);
+        let firstSkill = new __WEBPACK_IMPORTED_MODULE_0__Skill__["a" /* default */]();
+        firstSkill.createSkill('Shield Strike', 'Smash enemy with a shield, knocking him down for 1 turn', 'point', 1, this.damage, 2);
+        let secondSkill = new __WEBPACK_IMPORTED_MODULE_0__Skill__["a" /* default */]();
+        secondSkill.createSkill('Heavy blow', 'Attack your enemy with double damage', 'point', 1, [this.damage[0] * 2, this.damage[1] * 2], 3);
+        this.skills.push(attackSkill, firstSkill, secondSkill);
+        this.type = 'player';
     }
-    console.log("Current Damage: " + Math.floor(currentSkillDamage * ((100 - unit.armor) / 100)));
 
-    unit.healthpoint[0] -= Math.floor(currentSkillDamage * ((100 - unit.armor) / 100));
-  }
-
-  useHealSkill(unit, skill) {
-    unit.healthpoint[0] += Math.floor(Math.abs(Math.random() * (skill.damage[1] - skill.damage[0])) + Math.abs(skill.damage[0]));
-    if (unit.healthpoint[0] > unit.healthpoint[1]) {
-      unit.healthpoint[0] = unit.healthpoint[1];
+    makeMage(name) {
+        this.name = name;
+        this.class = 'mage';
+        this.healthpoint = [100, 100];
+        this.armor = 10;
+        this.damage = [30, 40];
+        this.initiative = 11;
+        let attackSkill = new __WEBPACK_IMPORTED_MODULE_0__Skill__["a" /* default */]();
+        attackSkill.createSkill('Attack', 'Deals damage on distance', 'point', 1, this.damage, 0);
+        let firstSkill = new __WEBPACK_IMPORTED_MODULE_0__Skill__["a" /* default */]();
+        firstSkill.createSkill('Thunderbolt', 'An electrical jolt deals air damage to target character, knocking him down for 1 turn', 'point', 1, this.damage, 2);
+        let secondSkill = new __WEBPACK_IMPORTED_MODULE_0__Skill__["a" /* default */]();
+        secondSkill.createSkill('Fire ball', 'Hurl a fiery sphere that will explode', 'circle', 2, this.damage, 2);
+        this.skills.push(attackSkill, firstSkill, secondSkill);
+        this.type = 'player';
+        this.shooter = true;
     }
-  }
+
+    makeThief(name) {
+        this.name = name;
+        this.class = 'thief';
+        this.healthpoint = [125, 125];
+        this.armor = 15;
+        this.damage = [40, 60];
+        this.initiative = 12;
+        let attackSkill = new __WEBPACK_IMPORTED_MODULE_0__Skill__["a" /* default */]();
+        attackSkill.createSkill('Attack', 'Deals damage in close combat', 'point', 1, this.damage, 0);
+        let firstSkill = new __WEBPACK_IMPORTED_MODULE_0__Skill__["a" /* default */]();
+        firstSkill.createSkill('Sawtooth knife', 'Attack enemy with guaranteed critical hit', 'point', 1, [this.damage[0] * 2, this.damage[1] * 2], 3);
+        let secondSkill = new __WEBPACK_IMPORTED_MODULE_0__Skill__["a" /* default */]();
+        secondSkill.createSkill('Blade flurry', 'Attack enemies around and deals 100% damage', 'circle', 1, this.damage, 2);
+        this.skills.push(attackSkill, firstSkill, secondSkill);
+        this.type = 'player';
+    }
+
+    makePriest(name) {
+        this.name = name;
+        this.class = 'priest';
+        this.healthpoint = [100, 100];
+        this.armor = 10;
+        this.damage = [-20, -30];
+        this.initiative = 11;
+        let attackSkill = new __WEBPACK_IMPORTED_MODULE_0__Skill__["a" /* default */]();
+        attackSkill.createSkill('Heal', 'Heal with healing power on distance', 'point', 1, this.damage, 0);
+        let firstSkill = new __WEBPACK_IMPORTED_MODULE_0__Skill__["a" /* default */]();
+        firstSkill.createSkill('Massive Heal', 'Heal all your units in area with 100% healing power', 'circle', 1, this.damage, 3);
+        let secondSkill = new __WEBPACK_IMPORTED_MODULE_0__Skill__["a" /* default */]();
+        secondSkill.createSkill('Holly wrath', 'Deal 200% healing power to cursed creatures', 'point', 1, [this.damage[0] * -2, this.damage[1] * -2], 2);
+        this.skills.push(attackSkill, firstSkill, secondSkill);
+        this.type = 'player';
+        this.shooter = true;
+    }
+
+    makeSkeleton(textureName) {
+        this.name = 'Skeleton';
+        this.class = textureName;
+        this.healthpoint = [150, 150];
+        this.armor = 5;
+        this.damage = [35, 40];
+        this.initiative = 10;
+
+        let attackSkill = new __WEBPACK_IMPORTED_MODULE_0__Skill__["a" /* default */]();
+        attackSkill.createSkill('Attack', 'Deals damage', 'point', 1, this.damage, 0);
+        this.skills.push(attackSkill);
+    }
+
+    isDead() {
+        if (this.healthpoint[0] <= 0) {
+            return true;
+        }
+    }
+
+    useDamageSkill(unit, skill) {
+
+        let currentSkillDamage = Math.floor(Math.random() * (skill.damage[1] - skill.damage[0])) + skill.damage[0];
+
+        if (Math.random() < this.criticalRate) {
+            currentSkillDamage *= 2;
+        }
+
+        if (Math.random() < unit.dodgeRate) {
+            currentSkillDamage = 0;
+        } else if (Math.random() < unit.blockRate) {
+            currentSkillDamage *= 0.3;
+        }
+        console.log('Current Damage: ' + Math.floor(currentSkillDamage * ((100 - unit.armor) / 100)));
+
+        unit.healthpoint[0] -= Math.floor(currentSkillDamage * ((100 - unit.armor) / 100));
+    }
+
+    useHealSkill(unit, skill) {
+        unit.healthpoint[0] += Math.floor(Math.abs(Math.random() * (skill.damage[1] - skill.damage[0])) + Math.abs(skill.damage[0]));
+        if (unit.healthpoint[0] > unit.healthpoint[1]) {
+            unit.healthpoint[0] = unit.healthpoint[1];
+        }
+    }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Unit;
 
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2063,59 +2094,59 @@ class Pathfinding {
 
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__GraphicEngine__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Utils__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Loader__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Loader__ = __webpack_require__(13);
 
 
 
 //import rere from '/views/singleplay/textures/wall.jpg';
 
 class Background {
-  constructor() {
-    this.ratio = 16 / 9;
-    this.engine = new __WEBPACK_IMPORTED_MODULE_0__GraphicEngine__["a" /* default */]('background', false);
-  }
+    constructor() {
+        this.ratio = 16 / 9;
+        this.engine = new __WEBPACK_IMPORTED_MODULE_0__GraphicEngine__["a" /* default */]('background', false);
+    }
 
-  InitMapAndSprites() {
-    this.engine.addSprite([0, 0], this.textures[2], __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].madeRectangle(-1, 1, 1, -1));
-    let coord = __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].madeRectangle(0, 0, 1.2 / 16, -(1.2 / 16) * this.ratio);
-    global.tiledMap.forEach(function (item, j) {
-      item.forEach(function (value, i) {
-        if (value.isWall) {
-          this.engine.addSprite(__WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].translationOnMap(i, j), this.textures[0], coord);
-        } else {
-          this.engine.addSprite(__WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].translationOnMap(i, j), this.textures[1], coord);
-        };
-      }.bind(this));
-    }.bind(this));
-    this.engine.addSprite([-0.9, 0.85], this.textures[3], __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].madeRectangle(0, 0, 0.2, -0.6)); // часы
-    this.engine.addSprite([-0.6, 0.85], this.textures[4], __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].madeRectangle(0, 0, 1.2, -(1.2 / 16) * 12 * this.ratio), true, __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].madeRectangle(0.008, 0.01, 0.990, 0.992)); // сетка
-    this.engine.addSprite([-0.55, -0.79], this.textures[5], __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].madeRectangle(0, 0, 1.1, -0.1 * this.ratio)); // lowbar
-    this.engine.addSprite([-0.63, -0.80], this.textures[6], __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].madeRectangle(0, 0, 0.1, -0.17), true); // стрелочка
-  }
+    InitMapAndSprites() {
+        this.engine.addSprite([0, 0], this.textures[2], __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].madeRectangle(-1, 1, 1, -1));
+        let coord = __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].madeRectangle(0, 0, 1.2 / 16, -(1.2 / 16) * this.ratio);
+        global.tiledMap.forEach(function (item, j) {
+            item.forEach(function (value, i) {
+                if (value.isWall) {
+                    this.engine.addSprite(__WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].translationOnMap(i, j), this.textures[0], coord);
+                } else {
+                    this.engine.addSprite(__WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].translationOnMap(i, j), this.textures[1], coord);
+                }
+            }.bind(this));
+        }.bind(this));
+        this.engine.addSprite([-0.9, 0.85], this.textures[3], __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].madeRectangle(0, 0, 0.2, -0.6)); // часы
+        this.engine.addSprite([-0.6, 0.85], this.textures[4], __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].madeRectangle(0, 0, 1.2, -(1.2 / 16) * 12 * this.ratio), true, __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].madeRectangle(0.006, 0.007, 0.9915, 0.993)); // сетка
+        this.engine.addSprite([-0.55, -0.79], this.textures[5], __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].madeRectangle(0, 0, 1.1, -0.1 * this.ratio)); // lowbar
+        this.engine.addSprite([-0.63, -0.80], this.textures[6], __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].madeRectangle(0, 0, 0.1, -0.17), true); // стрелочка
+    }
 
-  render() {
-    let loader = new __WEBPACK_IMPORTED_MODULE_2__Loader__["a" /* default */](['/views/singleplay/textures/wall.jpg', '/views/singleplay/textures/grass.jpg', '/views/singleplay/textures/background.png', '/views/singleplay/textures/hourglass.png', '/views/singleplay/textures/grid.png', '/views/singleplay/textures/initiativeLine.png', '/views/singleplay/textures/arrow.png'], this.engine.gl);
-    loader.load(this.onLoad.bind(this));
-  }
-  onLoad(textures) {
-    console.log('LOAD');
-    this.textures = textures;
-    this.InitMapAndSprites();
-    this.engine.render();
-  }
+    render() {
+        let loader = new __WEBPACK_IMPORTED_MODULE_2__Loader__["a" /* default */](['/views/singleplay/textures/wall.jpg', '/views/singleplay/textures/grass.jpg', '/views/singleplay/textures/background.png', '/views/singleplay/textures/hourglass.png', '/views/singleplay/textures/grid.png', '/views/singleplay/textures/initiativeLine.png', '/views/singleplay/textures/arrow.png'], this.engine.gl);
+        loader.load(this.onLoad.bind(this));
+    }
+    onLoad(textures) {
+        console.log('LOAD');
+        this.textures = textures;
+        this.InitMapAndSprites();
+        this.engine.render();
+    }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Background;
 
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(3)))
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2154,7 +2185,7 @@ void main() {
 
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2195,7 +2226,7 @@ class Program {
 
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2314,11 +2345,11 @@ class Uniform {
 
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__DungeonMapMaker__ = __webpack_require__(35);
+/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__DungeonMapMaker__ = __webpack_require__(36);
 
 
 global.actionDeque = [];
@@ -2326,13 +2357,13 @@ global.tiledMap = new __WEBPACK_IMPORTED_MODULE_0__DungeonMapMaker__["a" /* defa
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(3)))
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export WIDTH */
 /* unused harmony export HEIGHT */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Tile__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Tile__ = __webpack_require__(12);
 
 
 
@@ -2419,38 +2450,6 @@ class DungeonMapMaker {
 
 
 /***/ }),
-/* 36 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-class Tile {
-	constructor() {
-		this.xpos = null;
-		this.ypos = null;
-		this.unitOnTile = null;
-		this.isWall = null;
-	}
-
-	getInhabitant() {
-		return this.unitOnTile;
-	}
-
-	occupy(unit) {
-		this.unitOnTile = unit;
-	}
-
-	unoccupy() {
-		this.unitOnTile = null;
-	}
-
-	isOccupied() {
-		return this.unitOnTile !== null;
-	}
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = Tile;
-
-
-/***/ }),
 /* 37 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2458,11 +2457,11 @@ class Tile {
 /* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__GraphicEngine__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__SpriteManager__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__State__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Loader__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Loader__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Utils__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__AnimationManager__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__UnitManager__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Animation__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Animation__ = __webpack_require__(44);
 
 
 
@@ -2476,72 +2475,72 @@ class Tile {
 //import   './GameModule'
 
 class GameManager {
-  constructor() {
-    this.ratio = 16 / 9;
-    this.engine = new __WEBPACK_IMPORTED_MODULE_0__GraphicEngine__["a" /* default */]('canvas', true);
-    this.spriteManager = new __WEBPACK_IMPORTED_MODULE_1__SpriteManager__["a" /* default */](this.engine);
-    this.state = new __WEBPACK_IMPORTED_MODULE_2__State__["a" /* default */]();
-    this.fullScreen = false;
-  }
+    constructor() {
+        this.ratio = 16 / 9;
+        this.engine = new __WEBPACK_IMPORTED_MODULE_0__GraphicEngine__["a" /* default */]('canvas', true);
+        this.spriteManager = new __WEBPACK_IMPORTED_MODULE_1__SpriteManager__["a" /* default */](this.engine);
+        this.state = new __WEBPACK_IMPORTED_MODULE_2__State__["a" /* default */]();
+        this.fullScreen = false;
+    }
 
-  startGameRendering(callback) {
-    console.log("work rendering uints");
-    let loaderTextures = new __WEBPACK_IMPORTED_MODULE_3__Loader__["a" /* default */](['/views/singleplay/textures/activeGrass.jpg', '/views/singleplay/textures/activeTile.png', '/views/singleplay/textures/select.png', '/views/singleplay/icons/fullscreen.png'], this.engine.gl);
-    let loaderAnimations = new __WEBPACK_IMPORTED_MODULE_3__Loader__["a" /* default */](['/views/singleplay/animations/fireball.png', '/views/singleplay/animations/explosion.png', '/views/singleplay/animations/thunderbolt1.png'], this.engine.gl);
-    let loaderConditions = new __WEBPACK_IMPORTED_MODULE_3__Loader__["a" /* default */](['/views/singleplay/conditions/WarriorAngry.png', '/views/singleplay/conditions/WarriorAttack.png', '/views/singleplay/conditions/WarriorDead.png', '/views/singleplay/conditions/MageAngry.png', '/views/singleplay/conditions/MageAttack.png', '/views/singleplay/conditions/MageDead.png', '/views/singleplay/conditions/ThiefAngry.png', '/views/singleplay/conditions/ThiefAttack.png', '/views/singleplay/conditions/ThiefDead.png', '/views/singleplay/conditions/PriestAngry.png', '/views/singleplay/conditions/PriestAttack.png', '/views/singleplay/conditions/PriestDead.png', '/views/singleplay/conditions/Skeleton1Angry.png', '/views/singleplay/conditions/Skeleton1Attack.png', '/views/singleplay/conditions/Skeleton1Dead.png', '/views/singleplay/conditions/Skeleton2Angry.png', '/views/singleplay/conditions/Skeleton2Attack.png', '/views/singleplay/conditions/Skeleton2Dead.png'], this.engine.gl);
-    let loaderEntities = new __WEBPACK_IMPORTED_MODULE_3__Loader__["a" /* default */](['/views/singleplay/entity/warrior_portrait.png', '/views/singleplay/entity/mage_portrait.png', '/views/singleplay/entity/thief_portrait.png', '/views/singleplay/entity/priest_portrait.png', '/views/singleplay/entity/skeleton1_portrait.png', '/views/singleplay/entity/skeleton2_portrait.png', '/views/singleplay/entity/warrior.png', '/views/singleplay/entity/mage.png', '/views/singleplay/entity/thief.png', '/views/singleplay/entity/priest.png', '/views/singleplay/entity/skeleton1.png', '/views/singleplay/entity/skeleton2.png'], this.engine.gl);
-    loaderTextures.load(textures => {
-      loaderAnimations.load(animations => {
-        loaderConditions.load(conditions => {
-          loaderEntities.load(entities => {
-            this.textures = textures;
-            this.initGui();
-            this.initEvents();
-            let animation = new __WEBPACK_IMPORTED_MODULE_7__Animation__["a" /* default */](this);
-            this.animtaionManager = new __WEBPACK_IMPORTED_MODULE_5__AnimationManager__["a" /* default */](animation, this.spriteManager, this.activeTile, this.state, animations);
-            this.unitManager = new __WEBPACK_IMPORTED_MODULE_6__UnitManager__["a" /* default */](animation, this.animtaionManager, this.spriteManager, this.activeTile, this.state, entities, textures, conditions);
-            this.engine.render();
-          }, callback);
+    startGameRendering(callback) {
+        console.log('work rendering uints');
+        let loaderTextures = new __WEBPACK_IMPORTED_MODULE_3__Loader__["a" /* default */](['/views/singleplay/textures/activeGrass.jpg', '/views/singleplay/textures/activeTile.png', '/views/singleplay/textures/select.png', '/views/singleplay/icons/fullscreen.png'], this.engine.gl);
+        let loaderAnimations = new __WEBPACK_IMPORTED_MODULE_3__Loader__["a" /* default */](['/views/singleplay/animations/fireball.png', '/views/singleplay/animations/Fire 5.png', '/views/singleplay/animations/thunderbolt.png', '/views/singleplay/animations/healing.png', '/views/singleplay/animations/blade_flurry.png', '/views/singleplay/animations/attack.png', '/views/singleplay/animations/holly_wrath.png'], this.engine.gl);
+        let loaderConditions = new __WEBPACK_IMPORTED_MODULE_3__Loader__["a" /* default */](['/views/singleplay/conditions/WarriorAngry.png', '/views/singleplay/conditions/WarriorAttack.png', '/views/singleplay/conditions/WarriorDead.png', '/views/singleplay/conditions/MageAngry.png', '/views/singleplay/conditions/MageAttack.png', '/views/singleplay/conditions/MageDead.png', '/views/singleplay/conditions/ThiefAngry.png', '/views/singleplay/conditions/ThiefAttack.png', '/views/singleplay/conditions/ThiefDead.png', '/views/singleplay/conditions/PriestAngry.png', '/views/singleplay/conditions/PriestAttack.png', '/views/singleplay/conditions/PriestDead.png', '/views/singleplay/conditions/Skeleton1Angry.png', '/views/singleplay/conditions/Skeleton1Attack.png', '/views/singleplay/conditions/Skeleton1Dead.png', '/views/singleplay/conditions/Skeleton2Angry.png', '/views/singleplay/conditions/Skeleton2Attack.png', '/views/singleplay/conditions/Skeleton2Dead.png'], this.engine.gl);
+        let loaderEntities = new __WEBPACK_IMPORTED_MODULE_3__Loader__["a" /* default */](['/views/singleplay/entity/warrior_portrait.png', '/views/singleplay/entity/mage_portrait.png', '/views/singleplay/entity/thief_portrait.png', '/views/singleplay/entity/priest_portrait.png', '/views/singleplay/entity/skeleton1_portrait.png', '/views/singleplay/entity/skeleton2_portrait.png', '/views/singleplay/entity/warrior.png', '/views/singleplay/entity/mage.png', '/views/singleplay/entity/thief.png', '/views/singleplay/entity/priest.png', '/views/singleplay/entity/skeleton1.png', '/views/singleplay/entity/skeleton2.png'], this.engine.gl);
+        loaderTextures.load(textures => {
+            loaderAnimations.load(animations => {
+                loaderConditions.load(conditions => {
+                    loaderEntities.load(entities => {
+                        this.textures = textures;
+                        this.initGui();
+                        this.initEvents();
+                        let animation = new __WEBPACK_IMPORTED_MODULE_7__Animation__["a" /* default */](this);
+                        this.animtaionManager = new __WEBPACK_IMPORTED_MODULE_5__AnimationManager__["a" /* default */](animation, this.spriteManager, this.activeTile, this.state, animations);
+                        this.unitManager = new __WEBPACK_IMPORTED_MODULE_6__UnitManager__["a" /* default */](animation, this.animtaionManager, this.spriteManager, this.activeTile, this.state, entities, textures, conditions);
+                        this.engine.render();
+                    }, callback);
+                });
+            });
         });
-      });
-    });
-  }
+    }
 
-  initEvents() {
-    document.addEventListener('mousemove', function (event) {
-      let x = event.clientX / this.engine.gl.canvas.clientWidth;
-      let y = event.clientY / this.engine.gl.canvas.clientHeight;
-      if (x >= 0.2 && x <= 0.8 && y >= 0.065 && y <= 0.865 && document.getElementById('menu').hidden && !this.state.AnimationOnMap) {
-        let i = Math.floor((x - 0.2) / 0.6 / (1 / 16));
-        let j = Math.floor((y - 0.065) / 0.8 / (1 / 12));
-        if (global.tiledMap[i][j].active) {
-          this.spriteManager.getSprite(this.activeElem).setTrans(__WEBPACK_IMPORTED_MODULE_4__Utils__["a" /* default */].translationOnMap(j, i));
-        } else {
-          this.spriteManager.getSprite(this.activeElem).setTrans([-2, -2]);
-        }
-      };
-    }.bind(this));
-    document.addEventListener('click', event => {
-      let x = event.clientX / this.engine.gl.canvas.clientWidth;
-      let y = event.clientY / this.engine.gl.canvas.clientHeight;
-      if (x >= 0.95 && y >= 0.95) {
-        console.log(event.clientX + " " + event.clientY);
-        if (!this.fullScreen) {
-          document.documentElement.mozRequestFullScreen();
-          this.fullScreen = true;
-        } else {
-          document.mozCancelFullScreen();
-          this.fullScreen = false;
-        }
-      }
-    });
-  }
+    initEvents() {
+        document.addEventListener('mousemove', function (event) {
+            let x = event.clientX / this.engine.gl.canvas.clientWidth;
+            let y = event.clientY / this.engine.gl.canvas.clientHeight;
+            if (x >= 0.2 && x < 0.8 && y >= 0.065 && y < 0.865 && document.getElementById('menu').hidden && !this.state.AnimationOnMap) {
+                let i = Math.floor((x - 0.2) / 0.6 / (1 / 16));
+                let j = Math.floor((y - 0.065) / 0.8 / (1 / 12));
+                if (global.tiledMap[i][j].active) {
+                    this.spriteManager.getSprite(this.activeElem).setTrans(__WEBPACK_IMPORTED_MODULE_4__Utils__["a" /* default */].translationOnMap(j, i));
+                } else {
+                    this.spriteManager.getSprite(this.activeElem).setTrans([-2, -2]);
+                }
+            }
+        }.bind(this));
+        document.addEventListener('click', event => {
+            let x = event.clientX / this.engine.gl.canvas.clientWidth;
+            let y = event.clientY / this.engine.gl.canvas.clientHeight;
+            if (x >= 0.95 && y >= 0.95) {
+                console.log(event.clientX + ' ' + event.clientY);
+                if (!this.fullScreen) {
+                    document.documentElement.mozRequestFullScreen();
+                    this.fullScreen = true;
+                } else {
+                    document.mozCancelFullScreen();
+                    this.fullScreen = false;
+                }
+            }
+        });
+    }
 
-  initGui() {
-    this.activeTile = this.spriteManager.addSprite(-0.9, [-2, 3], this.textures[1], __WEBPACK_IMPORTED_MODULE_4__Utils__["a" /* default */].madeRectangle(0, 0, 1.2 / 16, -(1.2 / 16) * this.ratio));
-    this.activeElem = this.spriteManager.addSprite(-1, [-2, 3], this.textures[2], __WEBPACK_IMPORTED_MODULE_4__Utils__["a" /* default */].madeRectangle(0, 0, 1.2 / 16, -(1.2 / 16) * this.ratio));
-    this.spriteManager.addSprite(1, [0.95, -1 + 0.05 * this.ratio], this.textures[3], __WEBPACK_IMPORTED_MODULE_4__Utils__["a" /* default */].madeRectangle(0, 0, 0.05, -0.05 * this.ratio), true);
-  }
+    initGui() {
+        this.activeTile = this.spriteManager.addSprite(-0.9, [-2, 3], this.textures[1], __WEBPACK_IMPORTED_MODULE_4__Utils__["a" /* default */].madeRectangle(0, 0, 1.2 / 16, -(1.2 / 16) * this.ratio));
+        this.activeElem = this.spriteManager.addSprite(-1, [-2, 3], this.textures[2], __WEBPACK_IMPORTED_MODULE_4__Utils__["a" /* default */].madeRectangle(0, 0, 1.2 / 16, -(1.2 / 16) * this.ratio));
+        this.spriteManager.addSprite(1, [0.95, -1 + 0.05 * this.ratio], this.textures[3], __WEBPACK_IMPORTED_MODULE_4__Utils__["a" /* default */].madeRectangle(0, 0, 0.05, -0.05 * this.ratio), true);
+    }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = GameManager;
 
@@ -2621,69 +2620,92 @@ class State {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Utils__ = __webpack_require__(2);
 
 class AnimationManager {
-  constructor(Animation, spriteManager, activeTile, state, animations) {
-    this.Animation = Animation;
-    this.state = state;
-    this.spriteManager = spriteManager;
-    this.activeTile = activeTile;
-    this.animations = animations;
-  }
-
-  stateCheck(callback) {
-    if (this.state.AnimationOnMap) {
-      setTimeout(function () {
-        requestAnimationFrame(callback);
-      }, 50);
-      return true;
+    constructor(Animation, spriteManager, activeTile, state, animations) {
+        this.Animation = Animation;
+        this.state = state;
+        this.spriteManager = spriteManager;
+        this.activeTile = activeTile;
+        this.animations = animations;
     }
-    this.state.AnimationOnMap = true;
-  }
 
-  movingTo(TileStart, path) {
-    if (this.stateCheck(this.movingTo.bind(this, TileStart, path))) {
-      return;
-    }
-    let unit = TileStart.unitOnTile;
-    for (let i = path.length - 1; i >= 0; i--) {
-      if (i == path.length - 1) {
-        this.Animation.MoveAnimation(__WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].translationForUnits(unit), __WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].translationForUnits(path[i]), 0.2, unit.entity.mapId);
-        this.Animation.MoveAnimation(__WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].transForHealthbar(unit), __WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].transForHealthbar(path[i]), 0.2, unit.entity.healthbarId);
-      } else {
-        setTimeout(function () {
-          this.Animation.MoveAnimation(__WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].translationForUnits(path[i + 1]), __WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].translationForUnits(path[i]), 0.2, unit.entity.mapId);
-          this.Animation.MoveAnimation(__WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].transForHealthbar(path[i + 1]), __WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].transForHealthbar(path[i]), 0.2, unit.entity.healthbarId);
-        }.bind(this), 200 * (path.length - 1 - i));
-      }
-    }
-    let transActiveTile = this.spriteManager.getSprite(this.activeTile).getTrans();
-    setTimeout(function () {
-      if (transActiveTile == this.spriteManager.getSprite(this.activeTile).getTrans()) {
-        this.spriteManager.getSprite(this.activeTile).setTrans(__WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].translationOnMap(unit.ypos, unit.xpos));
-      }
-      this.state.AnimationOnMap = false;
-    }.bind(this), 200 * path.length);
-  }
-
-  thunderbolt(TileStart, TileDest) {
-    let DestT = __WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].translationForUnits(TileDest.unitOnTile);
-    let thunderboltId = this.spriteManager.addSprite(12, __WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].translationOnMap(TileDest.ypos, TileDest.xpos), this.animations[2], __WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].madeRectangle(0, 0, 1.2 / 16, 1.2 - DestT[1]), true, __WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].madeRectangle(0, 0, 1 / 9, -1 / 8));
-    this.Animation.FrameAnimation(thunderboltId, 2, 64, 9, 8, true);
-  }
-
-  fireball(TileStart, TileDest) {
-    let fireballId = this.spriteManager.addSprite(12, __WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].translationOnMap(TileStart.ypos, TileDest.xpos), this.animations[0], __WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].madeRectangle(0, 0, 0.06, -0.06 * 16 / 9), true, __WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].madeRectangle(0, 0, 1 / 6, -1 / 6));
-    this.Animation.FrameAnimation(fireballId, 2, 32, 6, 6, true);
-    this.Animation.MoveAnimation(__WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].translationForUnits(TileStart), __WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].translationOnMap(TileDest.ypos, TileDest.xpos), 2, fireballId);
-    setTimeout(function () {
-      for (let ii = TileDest.xpos - 2; ii < TileDest.xpos + 3; ii++) {
-        for (let jj = TileDest.ypos - 2; jj < TileDest.ypos + 3; jj++) {
-          if (ii >= 0 && ii < 16 && jj >= 0 && jj < 12) {
-            this.Animation.FrameAnimation(this.spriteManager.addSprite(12, __WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].translationOnMap(jj, ii), this.animations[1], __WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].madeRectangle(0, 0, 1 / 16, -(1 / 16) * 16 / 9), true), 1.2, 44, 6, 8, true);
-          }
+    stateCheck(callback) {
+        if (this.state.AnimationOnMap) {
+            setTimeout(function () {
+                requestAnimationFrame(callback);
+            }, 50);
+            return true;
         }
-      }
-    }.bind(this), 2000);
-  }
+        this.state.AnimationOnMap = true;
+    }
+
+    movingTo(TileStart, path) {
+        if (this.stateCheck(this.movingTo.bind(this, TileStart, path))) {
+            return;
+        }
+        let unit = TileStart.unitOnTile;
+        for (let i = path.length - 1; i >= 0; i--) {
+            if (i == path.length - 1) {
+                this.Animation.MoveAnimation(__WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].translationForUnits(unit), __WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].translationForUnits(path[i]), 0.2, unit.entity.mapId);
+                this.Animation.MoveAnimation(__WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].transForHealthbar(unit), __WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].transForHealthbar(path[i]), 0.2, unit.entity.healthbarId);
+            } else {
+                setTimeout(function () {
+                    this.Animation.MoveAnimation(__WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].translationForUnits(path[i + 1]), __WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].translationForUnits(path[i]), 0.2, unit.entity.mapId);
+                    this.Animation.MoveAnimation(__WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].transForHealthbar(path[i + 1]), __WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].transForHealthbar(path[i]), 0.2, unit.entity.healthbarId);
+                }.bind(this), 200 * (path.length - 1 - i));
+            }
+        }
+        let transActiveTile = this.spriteManager.getSprite(this.activeTile).getTrans();
+        setTimeout(function () {
+            if (transActiveTile == this.spriteManager.getSprite(this.activeTile).getTrans()) {
+                this.spriteManager.getSprite(this.activeTile).setTrans(__WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].translationOnMap(unit.ypos, unit.xpos));
+            }
+            this.state.AnimationOnMap = false;
+        }.bind(this), 200 * path.length);
+    }
+
+    thunderbolt(TileStart, TileDest) {
+        let DestT = __WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].translationForUnits(TileDest.unitOnTile);
+        let thunderboltId = this.spriteManager.addSprite(12, __WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].translationOnMap(TileDest.ypos, TileDest.xpos), this.animations[2], __WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].madeRectangle(0, 0, 1.2 / 16, 1.2 - DestT[1]), true, __WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].madeRectangle(0, 0, 1 / 5, -1 / 2));
+        this.Animation.FrameAnimation(thunderboltId, 0.5, 8, 5, 2, true);
+    }
+
+    fireball(TileStart, TileDest) {
+        let fireballId = this.spriteManager.addSprite(12, __WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].translationOnMap(TileStart.ypos, TileDest.xpos), this.animations[0], __WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].madeRectangle(0, 0, 0.06, -0.06 * 16 / 9), true, __WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].madeRectangle(0, 0, 1 / 6, -1 / 6));
+        this.Animation.FrameAnimation(fireballId, 1.5, 32, 6, 6, true);
+        this.Animation.MoveAnimation(__WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].translationForUnits(TileStart), __WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].translationOnMap(TileDest.ypos, TileDest.xpos), 1.5, fireballId);
+        setTimeout(function () {
+            for (let ii = TileDest.xpos - 2; ii < TileDest.xpos + 3; ii++) {
+                for (let jj = TileDest.ypos - 2; jj < TileDest.ypos + 3; jj++) {
+                    if (ii >= 0 && ii < 16 && jj >= 0 && jj < 12) {
+                        this.Animation.FrameAnimation(this.spriteManager.addSprite(12, __WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].translationOnMap(jj, ii), this.animations[1], __WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].madeRectangle(0, 0, 1 / 16, -(1 / 16) * 16 / 9), true, __WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].madeRectangle(0, 0, 1 / 5, -1 / 4)), 1.2, 20, 5, 4, true);
+                    }
+                }
+            }
+        }.bind(this), 1500);
+    }
+
+    healing(units) {
+        units.forEach(function (unit) {
+            let healId = this.spriteManager.addSprite(12, __WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].translationOnMap(unit.ypos - 1, unit.xpos - 1), this.animations[3], __WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].madeRectangle(0, 0, 3.6 / 16, -(3.6 / 16) * 16 / 9), true, __WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].madeRectangle(0, 0, 1 / 5, -1 / 5));
+            this.Animation.FrameAnimation(healId, 1, 25, 5, 5, true);
+        }.bind(this));
+    }
+
+    blade_flurry(target) {
+        let blade_flurryId = this.spriteManager.addSprite(12, __WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].translationOnMap(target.ypos - 2, target.xpos - 2), this.animations[4], __WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].madeRectangle(0, 0, 6 / 16, -(6 / 16) * 16 / 9), true, __WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].madeRectangle(0, 0, 1 / 5, -1 / 4));
+        this.Animation.FrameAnimation(blade_flurryId, 1, 20, 5, 4, true);
+    }
+
+    attack(target) {
+        let attackId = this.spriteManager.addSprite(12, __WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].translationOnMap(target.ypos - 0.9, target.xpos - 0.7), this.animations[5], __WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].madeRectangle(0, 0, 2.8 / 16, -(2.8 / 16) * 16 / 9), true, __WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].madeRectangle(0, 0, 1 / 5, -1 / 2));
+        this.Animation.FrameAnimation(attackId, 0.5, 10, 5, 2, true);
+    }
+
+    holly_wrath(sender, target) {
+        let holly_wrathId = this.spriteManager.addSprite(12, __WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].translationOnMap(sender.ypos - 1, sender.xpos - 1), this.animations[6], __WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].madeRectangle(0, 0, 3.6 / 16, -(3.6 / 16) * 16 / 9), true, __WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].madeRectangle(0, 0, 1 / 6, -1 / 6));
+        this.Animation.FrameAnimation(holly_wrathId, 1.5, 21, 5, 5, true);
+        this.Animation.MoveAnimation(__WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].translationForUnits(sender), __WEBPACK_IMPORTED_MODULE_0__Utils__["a" /* default */].translationOnMap(target.ypos - 1, target.xpos - 1), 1.5, holly_wrathId);
+    }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = AnimationManager;
 
@@ -2701,226 +2723,261 @@ class AnimationManager {
 
 
 class UnitManager {
-  constructor(Animation, animationManager, spriteManager, activeTile, state, entities, textures, conditions) {
-    this.Animation = Animation;
-    this.units = [];
-    this.ratio = 16 / 9;
-    this.spriteManager = spriteManager;
-    this.animationManager = animationManager;
-    this.entities = entities;
-    this.textures = textures;
-    this.conditions = conditions;
-    this.firstActiveUnit = true;
-    this.activeTile = activeTile;
-    this.possibleMoves = [];
-    this.dropMenu = 0;
-    this.state = state;
-    this.indexUnit = {
-      warrior: 0,
-      mage: 1,
-      thief: 2,
-      priest: 3,
-      skeleton1: 4,
-      skeleton2: 5
-    };
-  }
-
-  stateCheck(callback) {
-    if (this.state.AnimationOnLowbar) {
-      setTimeout(function () {
-        requestAnimationFrame(callback);
-      }, 50);
-      return true;
-    }
-    this.state.AnimationOnLowbar = true;
-  }
-
-  timeAndRunSkill(nameSkill, sender, target, runAnimation) {
-    switch (nameSkill) {
-      case 'Fire ball':
-        if (runAnimation) {
-          this.animationManager.fireball(sender, target);
-        }
-        return 2000;
-      case 'Thunderbolt':
-        if (runAnimation) {
-          this.animationManager.thunderbolt(sender, target);
-        }
-        return 2000;
-    }
-    return 500;
-  }
-
-  updateHealth(wounded) {
-    wounded.forEach(function (item) {
-      if (item.healthpoint[0] > 0) {
-        this.spriteManager.getSprite(item.entity.healthbarId).setVertexs(__WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].madeRectangle(0, 0, 1.2 / 16 * (item.healthpoint[0] / item.healthpoint[1]) - 0.006, -0.015));
-      } else {
-        this.spriteManager.getSprite(item.entity.healthbarId).setVertexs(__WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].madeRectangle(0, 0, 0, 0));
-      }
-    }.bind(this));
-  }
-
-  addUnit(unit) {
-    unit.entity = new __WEBPACK_IMPORTED_MODULE_0__Entity__["a" /* default */]();
-    unit.entity.lowbarId = this.spriteManager.addSprite(0, __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].transOnLowbar(this.units.length), this.entities[this.indexUnit[unit.class]], __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].madeRectangle(0, 0, 0.09, -0.09 * this.ratio), true);
-    unit.entity.mapId = this.spriteManager.addSprite(unit.ypos, __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].translationForUnits(unit), this.entities[6 + this.indexUnit[unit.class]], __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].madeRectangle(0, 0, 1.2 / 9 * 1.7, -(1.2 / 9) * 1.7 * this.ratio), true);
-    unit.entity.healthbarId = this.spriteManager.addColorSprite(unit.ypos, __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].transForHealthbar(unit), __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].madeRectangle(0, 0, 1.2 / 16 - 0.006, -0.015), [250 / 255, 44 / 255, 31 / 255, 1.0]);
-    this.units.push(unit);
-  }
-
-  changeActiveUnit() {
-    if (this.stateCheck(this.changeActiveUnit.bind(this))) {
-      return;
-    }
-    let x = this.units[0];
-    this.units.splice(0, 1);
-    this.units.push(x);
-    let t = __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].transOnLowbar(0);
-    this.Animation.MoveAnimation(t, [t[0], t[1] + 0.17], 0.5, this.units[this.units.length - 1].entity.lowbarId);
-    for (let i = 0; i < this.units.length - 1; i++) {
-      this.Animation.MoveAnimation(__WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].transOnLowbar(i + 1), __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].transOnLowbar(i), 0.8, this.units[i].entity.lowbarId);
-    }
-    setTimeout(function () {
-      let t = __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].transOnLowbar(0);
-      this.Animation.MoveAnimation([t[0], t[1] + 0.17], [t[0] + (this.units.length - 1) * 0.1, t[1] + 0.17], 0.5, this.units[this.units.length - 1].entity.lowbarId);
-    }.bind(this), 600);
-    setTimeout(function () {
-      let t = __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].transOnLowbar(this.units.length - 1);
-      this.Animation.MoveAnimation([t[0], t[1] + 0.17], t, 0.5, this.units[this.units.length - 1].entity.lowbarId);
-    }.bind(this), 1120);
-    setTimeout(function () {
-      this.state.AnimationOnLowbar = false;
-    }.bind(this), 1650);
-  }
-
-  removeUnitsInInitiativeLine(units) {
-    if (this.stateCheck(this.removeUnitsInInitiativeLine.bind(this, units))) {
-      return;
-    }
-    units.forEach(function (unit) {
-      this.units.splice(this.units.indexOf(unit), 1);
-      this.spriteManager.deleteSprite(unit.entity.lowbarId);
-    }.bind(this));
-    this.units.forEach(function (unit, i) {
-      this.Animation.MoveAnimation(this.spriteManager.getSprite(unit.entity.lowbarId).getTrans(), __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].transOnLowbar(i), 0.5, unit.entity.lowbarId);
-    }.bind(this));
-    setTimeout(function () {
-      this.state.AnimationOnLowbar = false;
-    }.bind(this), 510);
-  }
-
-  activeUnit(unit) {
-    if (this.firstActiveUnit) {
-      this.firstActiveUnit = false;
-    } else {
-      this.changeActiveUnit(unit);
-    }
-    this.spriteManager.getSprite(this.activeTile).setTrans(__WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].translationOnMap(unit.ypos, unit.xpos));
-    document.onmousedown = function (event) {
-      let x = event.clientX / document.getElementById('canvas').clientWidth;
-      let y = event.clientY / document.getElementById('canvas').clientHeight;
-      if (event.which == 1 && x >= 0.2 && x <= 0.8 && y >= 0.065 && y <= 0.865 && document.getElementById('menu').hidden && this.dropMenu == 0 && !this.state.AnimationOnMap) {
-        let i = Math.floor((x - 0.2) / 0.6 / (1 / 16));
-        let j = Math.floor((y - 0.065) / 0.8 / (1 / 12));
-        let div = document.createElement('div');
-        this.dropMenu = div;
-        let ul = document.createElement('ul');
-        div.className = 'drop-menu';
-        div.style.left = event.clientX - 40 + 'px';
-        div.style.top = event.clientY - 15 + 'px';
-        div.appendChild(ul);
-        let elem = global.tiledMap[i][j];
-        let func = function (item) {
-          let li = document.createElement('li');
-          li.innerHTML = item.name;
-          li.onclick = function () {
-            let action = new __WEBPACK_IMPORTED_MODULE_2__Action__["a" /* default */]();
-            action.sender = global.tiledMap[unit.xpos][unit.ypos];
-            action.target = global.tiledMap[i][j];
-            action.ability = item;
-            global.actionDeque.push(action);
-            this.dropMenu.remove();
-            this.dropMenu = 0;
-          }.bind(this);
-          ul.appendChild(li);
-        }.bind(this);
-        if (elem.isOccupied() && elem.unitOnTile.type === unit.type) {
-          console.log("Союзник");
-          unit.skills.forEach(function (item, i) {
-            if (item.name !== 'Move' && item.typeOfArea == "circle" && item.damage[0] < 0) {
-              func(item);
-            }
-          });
-        } else if (elem.isOccupied() && elem.unitOnTile.type != unit.type) {
-          console.log("Противник");
-          unit.skills.forEach(function (item, i) {
-            if (item.name !== 'Move' && item.damage[0] > 0) {
-              func(item);
-            }
-          });
-        } else {
-          console.log("Карта");
-          unit.skills.forEach(function (item, i) {
-            if (item.typeOfArea === "circle" || item.name === 'Move' && elem.active) {
-              func(item);
-            }
-          });
-        }
-        document.getElementsByClassName('container')[0].appendChild(div);
-      } else if (event.which === 1 && this.dropMenu !== 0 && event.target.tagName !== 'LI') {
-        this.dropMenu.remove();
+    constructor(Animation, animationManager, spriteManager, activeTile, state, entities, textures, conditions) {
+        this.Animation = Animation;
+        this.units = [];
+        this.ratio = 16 / 9;
+        this.spriteManager = spriteManager;
+        this.animationManager = animationManager;
+        this.entities = entities;
+        this.textures = textures;
+        this.conditions = conditions;
+        this.firstActiveUnit = true;
+        this.activeTile = activeTile;
+        this.possibleMoves = [];
         this.dropMenu = 0;
-      }
-    }.bind(this);
-  }
-
-  unitAttack(nameSkill, sender, target, wounded) {
-    let index = this.indexUnit[sender.unitOnTile.class];
-    this.spriteManager.getSprite(sender.unitOnTile.entity.mapId).setTexture(this.conditions[3 * index]);
-    setTimeout(function (nameSkill, sender, target) {
-      this.spriteManager.getSprite(sender.unitOnTile.entity.mapId).setTexture(this.conditions[1 + 3 * index]);
-      let timer = this.timeAndRunSkill(nameSkill, sender, target, true);
-      setTimeout(function (sender, target) {
-        // gameManager.spriteManager.getSprite(target.unitOnTile.entity.mapId).setTexture(images[92]);
-        this.spriteManager.getSprite(sender.unitOnTile.entity.mapId).setTexture(this.entities[6 + index]);
-        this.updateHealth(wounded);
-      }.bind(this, sender, target), timer + 300);
-    }.bind(this, nameSkill, sender, target), 500);
-  }
-
-  unitAttackAndKill(nameSkill, sender, target, DeadUnits, wounded) {
-    this.unitAttack(nameSkill, sender, target, wounded);
-    let timer = this.timeAndRunSkill(nameSkill);
-    setTimeout(() => {
-      this.removeUnitsInInitiativeLine(DeadUnits);
-      DeadUnits.forEach(unit => {
-        this.spriteManager.getSprite(unit.entity.mapId).setTexture(this.conditions[2 + 3 * this.indexUnit[target.unitOnTile.class]]);
-        this.spriteManager.getSprite(unit.entity.healthbarId).setVertexs(__WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].madeRectangle(0, 0, 0, 0));
-      });
-    }, timer + 800);
-  }
-
-  showPossibleMoves(path) {
-    for (let i = 0; i < this.possibleMoves.length; i++) {
-      global.tiledMap[this.possibleMoves[i].xpos][this.possibleMoves[i].ypos].active = false;
-      this.spriteManager.deleteSprite(this.possibleMoves[i].id);
+        this.state = state;
+        this.indexUnit = {
+            warrior: 0,
+            mage: 1,
+            thief: 2,
+            priest: 3,
+            skeleton1: 4,
+            skeleton2: 5
+        };
     }
-    this.possibleMoves = [];
-    for (let i = 0; i < path.length; i++) {
-      this.possibleMoves.push({
-        id: this.spriteManager.addSprite(-2, __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].translationOnMap(path[i].ypos, path[i].xpos), this.textures[0], __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].madeRectangle(0, 0, 1.2 / 16, -(1.2 / 16) * this.ratio)),
-        xpos: path[i].xpos,
-        ypos: path[i].ypos
-      });
-      global.tiledMap[path[i].xpos][path[i].ypos].active = true;
+
+    stateCheck(callback) {
+        if (this.state.AnimationOnLowbar) {
+            setTimeout(function () {
+                requestAnimationFrame(callback);
+            }, 50);
+            return true;
+        }
+        this.state.AnimationOnLowbar = true;
     }
-    this.units.forEach(unit => {
-      this.spriteManager.getSprite(unit.entity.mapId).order = unit.ypos;
-      this.spriteManager.getSprite(unit.entity.healthbarId).order = unit.ypos;
-    });
-    this.spriteManager.sortSprites();
-  }
+
+    timeAndRunSkill(nameSkill, sender, target, runAnimation, wounded) {
+        switch (nameSkill) {
+            case 'Fire ball':
+                if (runAnimation) {
+                    this.animationManager.fireball(sender, target);
+                }
+                return 1500;
+            case 'Thunderbolt':
+                if (runAnimation) {
+                    this.animationManager.thunderbolt(sender, target);
+                }
+                return 500;
+
+            case 'Massive Heal':
+                if (runAnimation) {
+                    this.animationManager.healing(wounded);
+                }
+                return 1000;
+            case 'Blade flurry':
+                if (runAnimation) {
+                    this.animationManager.blade_flurry(target);
+                }
+                return 1000;
+            case 'Attack':case 'Sawtooth knife':
+                if (runAnimation) {
+                    this.animationManager.attack(target);
+                }
+                return 500;
+            case 'Holly wrath':
+                if (runAnimation) {
+                    this.animationManager.holly_wrath(sender, target);
+                }
+                return 1500;
+        }
+        return 500;
+    }
+
+    updateHealth(wounded) {
+        wounded.forEach(function (item) {
+            if (item.healthpoint[0] > 0) {
+                this.spriteManager.getSprite(item.entity.healthbarId).setVertexs(__WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].madeRectangle(0, 0, 1.2 / 16 * (item.healthpoint[0] / item.healthpoint[1]) - 0.006, -0.015));
+            } else {
+                this.spriteManager.getSprite(item.entity.healthbarId).setVertexs(__WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].madeRectangle(0, 0, 0, 0));
+            }
+        }.bind(this));
+    }
+
+    addUnit(unit) {
+        unit.entity = new __WEBPACK_IMPORTED_MODULE_0__Entity__["a" /* default */]();
+        unit.entity.lowbarId = this.spriteManager.addSprite(0, __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].transOnLowbar(this.units.length), this.entities[this.indexUnit[unit.class]], __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].madeRectangle(0, 0, 0.09, -0.09 * this.ratio), true);
+        unit.entity.mapId = this.spriteManager.addSprite(unit.ypos, __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].translationForUnits(unit), this.entities[6 + this.indexUnit[unit.class]], __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].madeRectangle(0, 0, 1.2 / 9 * 1.7, -(1.2 / 9) * 1.7 * this.ratio), true);
+        unit.entity.healthbarId = this.spriteManager.addColorSprite(unit.ypos, __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].transForHealthbar(unit), __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].madeRectangle(0, 0, 1.2 / 16 - 0.006, -0.015), [250 / 255, 44 / 255, 31 / 255, 1.0]);
+        this.units.push(unit);
+    }
+
+    changeActiveUnit() {
+        if (this.stateCheck(this.changeActiveUnit.bind(this))) {
+            return;
+        }
+        let x = this.units[0];
+        this.units.splice(0, 1);
+        this.units.push(x);
+        let t = __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].transOnLowbar(0);
+        this.Animation.MoveAnimation(t, [t[0], t[1] + 0.17], 0.5, this.units[this.units.length - 1].entity.lowbarId);
+        for (let i = 0; i < this.units.length - 1; i++) {
+            this.Animation.MoveAnimation(__WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].transOnLowbar(i + 1), __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].transOnLowbar(i), 0.8, this.units[i].entity.lowbarId);
+        }
+        setTimeout(function () {
+            let t = __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].transOnLowbar(0);
+            this.Animation.MoveAnimation([t[0], t[1] + 0.17], [t[0] + (this.units.length - 1) * 0.1, t[1] + 0.17], 0.5, this.units[this.units.length - 1].entity.lowbarId);
+        }.bind(this), 600);
+        setTimeout(function () {
+            let t = __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].transOnLowbar(this.units.length - 1);
+            this.Animation.MoveAnimation([t[0], t[1] + 0.17], t, 0.5, this.units[this.units.length - 1].entity.lowbarId);
+        }.bind(this), 1120);
+        setTimeout(function () {
+            this.state.AnimationOnLowbar = false;
+        }.bind(this), 1650);
+    }
+
+    removeUnitsInInitiativeLine(units) {
+        if (this.stateCheck(this.removeUnitsInInitiativeLine.bind(this, units))) {
+            return;
+        }
+        units.forEach(function (unit) {
+            this.units.splice(this.units.indexOf(unit), 1);
+            this.spriteManager.deleteSprite(unit.entity.lowbarId);
+        }.bind(this));
+        this.units.forEach(function (unit, i) {
+            this.Animation.MoveAnimation(this.spriteManager.getSprite(unit.entity.lowbarId).getTrans(), __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].transOnLowbar(i), 0.5, unit.entity.lowbarId);
+        }.bind(this));
+        setTimeout(function () {
+            this.state.AnimationOnLowbar = false;
+        }.bind(this), 510);
+    }
+
+    activeUnit(unit) {
+        if (this.firstActiveUnit) {
+            this.firstActiveUnit = false;
+        } else {
+            this.changeActiveUnit(unit);
+        }
+        this.spriteManager.getSprite(this.activeTile).setTrans(__WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].translationOnMap(unit.ypos, unit.xpos));
+        document.onmousedown = function (event) {
+            let x = event.clientX / document.getElementById('canvas').clientWidth;
+            let y = event.clientY / document.getElementById('canvas').clientHeight;
+            if (event.which === 1 && x >= 0.2 && x <= 0.8 && y >= 0.065 && y <= 0.865 && document.getElementById('menu').hidden && this.dropMenu === 0 && !this.state.AnimationOnMap) {
+                let i = Math.floor((x - 0.2) / 0.6 / (1 / 16));
+                let j = Math.floor((y - 0.065) / 0.8 / (1 / 12));
+                let div = document.createElement('div');
+                this.dropMenu = div;
+                let ul = document.createElement('ul');
+                div.className = 'drop-menu';
+                div.style.left = event.clientX - 40 + 'px';
+                div.style.top = event.clientY - 15 + 'px';
+                div.appendChild(ul);
+                let elem = global.tiledMap[i][j];
+                let func = function (item) {
+                    let li = document.createElement('li');
+                    li.innerHTML = item.name;
+                    li.onclick = function () {
+                        let action = new __WEBPACK_IMPORTED_MODULE_2__Action__["a" /* default */]();
+                        action.sender = global.tiledMap[unit.xpos][unit.ypos];
+                        action.target = global.tiledMap[i][j];
+                        action.ability = item;
+                        global.actionDeque.push(action);
+                        this.dropMenu.remove();
+                        this.dropMenu = 0;
+                    }.bind(this);
+                    ul.appendChild(li);
+                }.bind(this);
+                if (elem.isOccupied() && elem.unitOnTile.type === unit.type) {
+                    console.log('Союзник');
+                    unit.skills.forEach(function (item) {
+                        if (item.typeOfArea === 'circle' && item.damage[0] < 0) {
+                            func(item);
+                        }
+                    });
+                } else if (elem.isOccupied() && elem.unitOnTile.type !== unit.type) {
+                    console.log('Противник');
+                    unit.skills.forEach(function (item) {
+                        if (item.damage[0] > 0) {
+                            func(item);
+                        }
+                    });
+                } else {
+                    console.log('Карта');
+                    unit.skills.forEach(function (item) {
+                        if (item.typeOfArea === 'circle') {
+                            func(item);
+                        }
+                    });
+                    if (elem.active) {
+                        let li = document.createElement('li');
+                        li.innerHTML = 'Move';
+                        li.onclick = function () {
+                            let action = new __WEBPACK_IMPORTED_MODULE_2__Action__["a" /* default */]();
+                            action.sender = global.tiledMap[unit.xpos][unit.ypos];
+                            action.target = global.tiledMap[i][j];
+                            action.ability = null;
+                            global.actionDeque.push(action);
+                            this.dropMenu.remove();
+                            this.dropMenu = 0;
+                        }.bind(this);
+                        ul.appendChild(li);
+                    }
+                }
+                document.getElementsByClassName('container')[0].appendChild(div);
+            } else if (event.which === 1 && this.dropMenu !== 0 && event.target.tagName !== 'LI') {
+                this.dropMenu.remove();
+                this.dropMenu = 0;
+            }
+        }.bind(this);
+    }
+
+    unitAttack(nameSkill, sender, target, wounded) {
+        let index = this.indexUnit[sender.unitOnTile.class];
+        this.spriteManager.getSprite(sender.unitOnTile.entity.mapId).setTexture(this.conditions[3 * index]);
+        setTimeout(function (nameSkill, sender, target) {
+            this.spriteManager.getSprite(sender.unitOnTile.entity.mapId).setTexture(this.conditions[1 + 3 * index]);
+            let timer = this.timeAndRunSkill(nameSkill, sender, target, true, wounded);
+            setTimeout(function (sender, target) {
+                // gameManager.spriteManager.getSprite(target.unitOnTile.entity.mapId).setTexture(images[92]);
+                this.spriteManager.getSprite(sender.unitOnTile.entity.mapId).setTexture(this.entities[6 + index]);
+                this.updateHealth(wounded);
+            }.bind(this, sender, target), timer + 300);
+        }.bind(this, nameSkill, sender, target), 500);
+    }
+
+    unitAttackAndKill(nameSkill, sender, target, DeadUnits, wounded) {
+        this.unitAttack(nameSkill, sender, target, wounded);
+        let timer = this.timeAndRunSkill(nameSkill);
+        setTimeout(() => {
+            this.removeUnitsInInitiativeLine(DeadUnits);
+            DeadUnits.forEach(unit => {
+                this.spriteManager.getSprite(unit.entity.mapId).setTexture(this.conditions[2 + 3 * this.indexUnit[target.unitOnTile.class]]);
+                this.spriteManager.getSprite(unit.entity.healthbarId).setVertexs(__WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].madeRectangle(0, 0, 0, 0));
+            });
+        }, timer + 800);
+    }
+
+    showPossibleMoves(path) {
+        for (let i = 0; i < this.possibleMoves.length; i++) {
+            global.tiledMap[this.possibleMoves[i].xpos][this.possibleMoves[i].ypos].active = false;
+            this.spriteManager.deleteSprite(this.possibleMoves[i].id);
+        }
+        this.possibleMoves = [];
+        for (let i = 0; i < path.length; i++) {
+            this.possibleMoves.push({
+                id: this.spriteManager.addSprite(-2, __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].translationOnMap(path[i].ypos, path[i].xpos), this.textures[0], __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].madeRectangle(0, 0, 1.2 / 16, -(1.2 / 16) * this.ratio)),
+                xpos: path[i].xpos,
+                ypos: path[i].ypos
+            });
+            global.tiledMap[path[i].xpos][path[i].ypos].active = true;
+        }
+        this.units.forEach(unit => {
+            this.spriteManager.getSprite(unit.entity.mapId).order = unit.ypos;
+            this.spriteManager.getSprite(unit.entity.healthbarId).order = unit.ypos;
+        });
+        this.spriteManager.sortSprites();
+    }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = UnitManager;
 
@@ -2946,67 +3003,35 @@ class Entity {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Tile1_js__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Skill1_js__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Tile_js__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Skill_js__ = __webpack_require__(10);
 
 
 class Action {
-	constructor() {
-		this.target = new __WEBPACK_IMPORTED_MODULE_0__Tile1_js__["a" /* default */]();
-		this.sender = new __WEBPACK_IMPORTED_MODULE_0__Tile1_js__["a" /* default */]();
-		this.ability = new __WEBPACK_IMPORTED_MODULE_1__Skill1_js__["a" /* default */]();
-	}
+    constructor() {
+        this.target = new __WEBPACK_IMPORTED_MODULE_0__Tile_js__["a" /* default */]();
+        this.sender = new __WEBPACK_IMPORTED_MODULE_0__Tile_js__["a" /* default */]();
+        this.ability = new __WEBPACK_IMPORTED_MODULE_1__Skill_js__["a" /* default */]();
+    }
 
-	isMovement() {
-		// console.log(this.target + " - target and this.ability - " + this.ability);
-		return this.target !== null && this.ability === null;
-	}
+    isMovement() {
+        // console.log(this.target + " - target and this.ability - " + this.ability);
+        return this.target !== null && this.ability === null;
+    }
 
-	isSkip() {
-		return this.target === null && this.ability === null;
-	}
+    isSkip() {
+        return this.target === null && this.ability === null;
+    }
 
-	isAbility() {
-		return this.ability !== null;
-	}
+    isAbility() {
+        return this.ability !== null;
+    }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Action;
 
 
 /***/ }),
 /* 44 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-class Tile {
-	constructor() {
-		this.xpos = null;
-		this.ypos = null;
-		this.unitOnTile = null;
-		this.isWall = null;
-	}
-
-	getInhabitant() {
-		return this.unitOnTile;
-	}
-
-	occupy(unit) {
-		this.unitOnTile = unit;
-	}
-
-	unoccupy() {
-		this.unitOnTile = null;
-	}
-
-	isOccupied() {
-		return this.unitOnTile !== null;
-	}
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = Tile;
-
-
-/***/ }),
-/* 45 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3067,25 +3092,25 @@ class Animation {
 
 
 /***/ }),
-/* 46 */
+/* 45 */
 /***/ (function(module, exports) {
 
-module.exports = "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Document</title>\n  <link rel=\"stylesheet\" href=\"/views/singleplay/style.css\">\n</head>\n\n<body>\n  <div class=\"container\">\n    <canvas id=\"background\"></canvas>\n    <canvas id=\"canvas\"></canvas>\n    <div class=\"fps\">\n      FPS: <span id=\"fps\"></span>\n    </div>\n    <div style=\"position: relative;\">\n      <span style=\"position:absolute; left:6.3vw; top:31vh;\" id=\"time\"></span>\n    </div>\n  </div>\n  <div hidden id=\"menu\" style=\"background: yellow; padding: 5px;position:absolute;top:45vh;left:45vw;\">\n  </div>\n  <script src=\"/views/singleplay/Utils.js\" charset=\"utf-8\"></script>\n  <script src=\"/views/singleplay/Shaders.js\" charset=\"utf-8\"></script>\n  <script src=\"/views/singleplay/State.js\" charset=\"utf-8\"></script>\n  <script src=\"/views/singleplay/GraphicEngine.js\" charset=\"utf-8\"></script>\n  <script src=\"/views/singleplay/GameManager.js\" charset=\"utf-8\"></script>\n  <script src=\"/views/singleplay/UnitManager.js\" charset=\"utf-8\"></script>\n  <script src=\"/views/singleplay/AnimationManager.js\" charset=\"utf-8\"></script>\n  <script src=\"/views/singleplay/SpriteManager.js\" charset=\"utf-8\"></script>\n  <script src=\"/views/singleplay/Animation.js\" charset=\"utf-8\"></script>\n  <script src=\"/views/singleplay/Entity.js\" charset=\"utf-8\"></script>\n  <script src=\"/views/singleplay/Program.js\" charset=\"utf-8\"></script>\n  <script src=\"/views/singleplay/Loader.js\" charset=\"utf-8\"></script>\n  <script src=\"/views/singleplay/Background.js\" charset=\"utf-8\"></script>\n  <script src=\"/views/singleplay/Sprite.js\" charset=\"utf-8\"></script>\n  <script src=\"/views/singleplay/Pathfinding.js\" charset=\"utf-8\"></script>\n  <script src=\"/views/singleplay/Skill.js\" charset=\"utf-8\"></script>\n  <script src=\"/views/singleplay/Unit.js\" charset=\"utf-8\"></script>\n  <script src=\"/views/singleplay/Tile.js\" charset=\"utf-8\"></script>\n  <script src=\"/views/singleplay/DungeonMapMaker.js\" charset=\"utf-8\"></script>\n  <script src=\"/views/singleplay/GameModule.js\" charset=\"utf-8\"></script>\n  <script src=\"/views/singleplay/DemoGameModule.js\" charset=\"utf-8\"></script>\n  <script src=\"/views/singleplay/InitiativeLine.js\" charset=\"utf-8\"></script>\n  <script src=\"/views/singleplay/Action.js\" charset=\"utf-8\"></script>\n  <script src=\"/views/singleplay/start.js\" charset=\"utf-8\"></script>\n</body>\n\n</html>\n";
+module.exports = "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Document</title>\n  <link rel=\"stylesheet\" href=\"/views/singleplay/style.css\">\n</head>\n\n<body>\n  <div class=\"container\">\n    <canvas id=\"background\"></canvas>\n    <canvas id=\"canvas\"></canvas>\n    <div class=\"fps\">\n      FPS: <span id=\"fps\"></span>\n    </div>\n    <div style=\"position: relative;\">\n      <span style=\"position:absolute; left:6.3vw; top:31vh;\" id=\"time\"></span>\n    </div>\n  </div>\n  <div hidden id=\"menu\" style=\"background: yellow; padding: 5px;position:absolute;top:45vh;left:45vw;\">\n  </div>\n</body>\n\n</html>\n";
 
 /***/ }),
-/* 47 */
+/* 46 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 48 */
+/* 47 */
 /***/ (function(module, exports) {
 
 module.exports = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/4iOISUNDX1BST0ZJTEUAAQEAACN4bGNtcwIQAABtbnRyUkdCIFhZWiAH3wAIABMADwAcACphY3NwKm5peAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA9tYAAQAAAADTLWxjbXMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAtkZXNjAAABCAAAALBjcHJ0AAABuAAAARJ3dHB0AAACzAAAABRjaGFkAAAC4AAAACxyWFlaAAADDAAAABRiWFlaAAADIAAAABRnWFlaAAADNAAAABRyVFJDAAADSAAAIAxnVFJDAAADSAAAIAxiVFJDAAADSAAAIAxjaHJtAAAjVAAAACRkZXNjAAAAAAAAABxzUkdCLWVsbGUtVjItc3JnYnRyYy5pY2MAAAAAAAAAAAAAAB0AcwBSAEcAQgAtAGUAbABsAGUALQBWADIALQBzAHIAZwBiAHQAcgBjAC4AaQBjAGMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHRleHQAAAAAQ29weXJpZ2h0IDIwMTUsIEVsbGUgU3RvbmUgKHdlYnNpdGU6IGh0dHA6Ly9uaW5lZGVncmVlc2JlbG93LmNvbS87IGVtYWlsOiBlbGxlc3RvbmVAbmluZWRlZ3JlZXNiZWxvdy5jb20pLiBUaGlzIElDQyBwcm9maWxlIGlzIGxpY2Vuc2VkIHVuZGVyIGEgQ3JlYXRpdmUgQ29tbW9ucyBBdHRyaWJ1dGlvbi1TaGFyZUFsaWtlIDMuMCBVbnBvcnRlZCBMaWNlbnNlIChodHRwczovL2NyZWF0aXZlY29tbW9ucy5vcmcvbGljZW5zZXMvYnktc2EvMy4wL2xlZ2FsY29kZSkuAAAAAFhZWiAAAAAAAAD21gABAAAAANMtc2YzMgAAAAAAAQxCAAAF3v//8yUAAAeTAAD9kP//+6H///2iAAAD3AAAwG5YWVogAAAAAAAAb6AAADj1AAADkFhZWiAAAAAAAAAknwAAD4QAALbEWFlaIAAAAAAAAGKXAAC3hwAAGNljdXJ2AAAAAAAAEAAAAAABAAIABAAFAAYABwAJAAoACwAMAA4ADwAQABEAEwAUABUAFgAYABkAGgAbABwAHgAfACAAIQAjACQAJQAmACgAKQAqACsALQAuAC8AMAAyADMANAA1ADcAOAA5ADoAOwA9AD4APwBAAEIAQwBEAEUARwBIAEkASgBMAE0ATgBPAFEAUgBTAFQAVQBXAFgAWQBaAFwAXQBeAF8AYQBiAGMAZABmAGcAaABpAGsAbABtAG4AbwBxAHIAcwB0AHYAdwB4AHkAewB8AH0AfgCAAIEAggCDAIUAhgCHAIgAiQCLAIwAjQCOAJAAkQCSAJMAlQCWAJcAmACaAJsAnACdAJ8AoAChAKIApAClAKYApwCoAKoAqwCsAK0ArwCwALEAsgC0ALUAtgC3ALkAugC7ALwAvgC/AMAAwQDCAMQAxQDGAMcAyQDKAMsAzADOAM8A0ADRANMA1ADVANcA2ADZANoA3ADdAN4A4ADhAOIA5ADlAOYA6ADpAOoA7ADtAO8A8ADxAPMA9AD2APcA+AD6APsA/QD+AP8BAQECAQQBBQEHAQgBCgELAQ0BDgEPAREBEgEUARUBFwEYARoBGwEdAR8BIAEiASMBJQEmASgBKQErAS0BLgEwATEBMwE0ATYBOAE5ATsBPAE+AUABQQFDAUUBRgFIAUoBSwFNAU8BUAFSAVQBVQFXAVkBWgFcAV4BYAFhAWMBZQFnAWgBagFsAW4BbwFxAXMBdQF2AXgBegF8AX4BfwGBAYMBhQGHAYkBigGMAY4BkAGSAZQBlgGXAZkBmwGdAZ8BoQGjAaUBpwGpAasBrAGuAbABsgG0AbYBuAG6AbwBvgHAAcIBxAHGAcgBygHMAc4B0AHSAdQB1gHYAdoB3AHeAeEB4wHlAecB6QHrAe0B7wHxAfMB9QH4AfoB/AH+AgACAgIEAgcCCQILAg0CDwISAhQCFgIYAhoCHQIfAiECIwIlAigCKgIsAi4CMQIzAjUCOAI6AjwCPgJBAkMCRQJIAkoCTAJPAlECUwJWAlgCWgJdAl8CYQJkAmYCaQJrAm0CcAJyAnUCdwJ5AnwCfgKBAoMChgKIAosCjQKQApIClQKXApoCnAKfAqECpAKmAqkCqwKuArACswK1ArgCuwK9AsACwgLFAsgCygLNAs8C0gLVAtcC2gLdAt8C4gLkAucC6gLsAu8C8gL1AvcC+gL9Av8DAgMFAwgDCgMNAxADEwMVAxgDGwMeAyADIwMmAykDLAMuAzEDNAM3AzoDPQM/A0IDRQNIA0sDTgNRA1QDVgNZA1wDXwNiA2UDaANrA24DcQN0A3cDegN9A4ADggOFA4gDiwOOA5EDlAOYA5sDngOhA6QDpwOqA60DsAOzA7YDuQO8A78DwgPFA8kDzAPPA9ID1QPYA9sD3wPiA+UD6APrA+4D8gP1A/gD+wP+BAIEBQQIBAsEDwQSBBUEGAQcBB8EIgQlBCkELAQvBDMENgQ5BD0EQARDBEcESgRNBFEEVARXBFsEXgRiBGUEaARsBG8EcwR2BHkEfQSABIQEhwSLBI4EkgSVBJkEnASgBKMEpwSqBK4EsQS1BLgEvAS/BMMExgTKBM4E0QTVBNgE3ATgBOME5wTqBO4E8gT1BPkE/QUABQQFCAULBQ8FEwUWBRoFHgUiBSUFKQUtBTEFNAU4BTwFQAVDBUcFSwVPBVIFVgVaBV4FYgVmBWkFbQVxBXUFeQV9BYEFhAWIBYwFkAWUBZgFnAWgBaQFqAWsBa8FswW3BbsFvwXDBccFywXPBdMF1wXbBd8F4wXnBesF7wX0BfgF/AYABgQGCAYMBhAGFAYYBhwGIQYlBikGLQYxBjUGOQY+BkIGRgZKBk4GUwZXBlsGXwZjBmgGbAZwBnQGeQZ9BoEGhQaKBo4GkgaXBpsGnwakBqgGrAaxBrUGuQa+BsIGxgbLBs8G1AbYBtwG4QblBuoG7gbyBvcG+wcABwQHCQcNBxIHFgcbBx8HJAcoBy0HMQc2BzoHPwdDB0gHTQdRB1YHWgdfB2MHaAdtB3EHdgd7B38HhAeJB40HkgeXB5sHoAelB6kHrgezB7cHvAfBB8YHygfPB9QH2QfdB+IH5wfsB/EH9Qf6B/8IBAgJCA0IEggXCBwIIQgmCCsILwg0CDkIPghDCEgITQhSCFcIXAhhCGYIawhwCHUIegh/CIQIiQiOCJMImAidCKIIpwisCLEItgi7CMAIxQjKCM8I1AjZCN8I5AjpCO4I8wj4CP0JAwkICQ0JEgkXCR0JIgknCSwJMQk3CTwJQQlGCUwJUQlWCVsJYQlmCWsJcQl2CXsJgQmGCYsJkQmWCZsJoQmmCasJsQm2CbwJwQnGCcwJ0QnXCdwJ4gnnCe0J8gn4Cf0KAgoICg0KEwoZCh4KJAopCi8KNAo6Cj8KRQpKClAKVgpbCmEKZgpsCnIKdwp9CoMKiAqOCpQKmQqfCqUKqgqwCrYKvArBCscKzQrTCtgK3grkCuoK7wr1CvsLAQsHCwwLEgsYCx4LJAsqCy8LNQs7C0ELRwtNC1MLWQtfC2QLagtwC3YLfAuCC4gLjguUC5oLoAumC6wLsgu4C74LxAvKC9AL1gvcC+IL6QvvC/UL+wwBDAcMDQwTDBkMIAwmDCwMMgw4DD4MRQxLDFEMVwxdDGQMagxwDHYMfQyDDIkMjwyWDJwMogyoDK8MtQy7DMIMyAzODNUM2wzhDOgM7gz1DPsNAQ0IDQ4NFQ0bDSENKA0uDTUNOw1CDUgNTw1VDVwNYg1pDW8Ndg18DYMNiQ2QDZYNnQ2kDaoNsQ23Db4NxQ3LDdIN2Q3fDeYN7A3zDfoOAQ4HDg4OFQ4bDiIOKQ4vDjYOPQ5EDkoOUQ5YDl8OZg5sDnMOeg6BDogOjg6VDpwOow6qDrEOuA6+DsUOzA7TDtoO4Q7oDu8O9g79DwQPCw8SDxkPIA8nDy4PNQ88D0MPSg9RD1gPXw9mD20PdA97D4IPiQ+QD5gPnw+mD60PtA+7D8IPyg/RD9gP3w/mD+0P9Q/8EAMQChASEBkQIBAnEC8QNhA9EEQQTBBTEFoQYhBpEHAQeBB/EIYQjhCVEJ0QpBCrELMQuhDCEMkQ0BDYEN8Q5xDuEPYQ/REFEQwRFBEbESMRKhEyETkRQRFIEVARVxFfEWcRbhF2EX0RhRGNEZQRnBGkEasRsxG7EcIRyhHSEdkR4RHpEfAR+BIAEggSDxIXEh8SJxIuEjYSPhJGEk4SVRJdEmUSbRJ1En0ShBKMEpQSnBKkEqwStBK8EsQSzBLUEtsS4xLrEvMS+xMDEwsTExMbEyMTKxMzEzsTRBNME1QTXBNkE2wTdBN8E4QTjBOUE50TpROtE7UTvRPFE80T1hPeE+YT7hP2E/8UBxQPFBcUIBQoFDAUOBRBFEkUURRaFGIUahRzFHsUgxSMFJQUnBSlFK0UthS+FMYUzxTXFOAU6BTxFPkVARUKFRIVGxUjFSwVNBU9FUUVThVXFV8VaBVwFXkVgRWKFZMVmxWkFawVtRW+FcYVzxXYFeAV6RXyFfoWAxYMFhQWHRYmFi8WNxZAFkkWUhZaFmMWbBZ1Fn4WhhaPFpgWoRaqFrMWuxbEFs0W1hbfFugW8Rb6FwMXDBcUFx0XJhcvFzgXQRdKF1MXXBdlF24XdxeAF4kXkhecF6UXrhe3F8AXyRfSF9sX5BftF/cYABgJGBIYGxgkGC4YNxhAGEkYUhhcGGUYbhh3GIEYihiTGJwYphivGLgYwhjLGNQY3hjnGPAY+hkDGQwZFhkfGSkZMhk7GUUZThlYGWEZaxl0GX4ZhxmRGZoZpBmtGbcZwBnKGdMZ3RnmGfAZ+hoDGg0aFhogGioaMxo9GkYaUBpaGmMabRp3GoEaihqUGp4apxqxGrsaxRrOGtga4hrsGvUa/xsJGxMbHRsnGzAbOhtEG04bWBtiG2wbdRt/G4kbkxudG6cbsRu7G8UbzxvZG+Mb7Rv3HAEcCxwVHB8cKRwzHD0cRxxRHFscZRxwHHochByOHJgcohysHLYcwRzLHNUc3xzpHPQc/h0IHRIdHB0nHTEdOx1FHVAdWh1kHW8deR2DHY4dmB2iHa0dtx3BHcwd1h3hHesd9R4AHgoeFR4fHioeNB4+HkkeUx5eHmgecx59Hogekx6dHqgesh69Hsce0h7cHuce8h78HwcfEh8cHycfMh88H0cfUh9cH2cfch98H4cfkh+dH6cfsh+9H8gf0h/dH+gf8x/+IAggEyAeICkgNCA/IEogVCBfIGogdSCAIIsgliChIKwgtyDCIM0g2CDjIO4g+SEEIQ8hGiElITAhOyFGIVEhXCFnIXIhfiGJIZQhnyGqIbUhwCHMIdch4iHtIfgiBCIPIhoiJSIwIjwiRyJSIl4iaSJ0In8iiyKWIqEirSK4IsMizyLaIuYi8SL8IwgjEyMfIyojNSNBI0wjWCNjI28jeiOGI5EjnSOoI7QjvyPLI9Yj4iPuI/kkBSQQJBwkKCQzJD8kSyRWJGIkbiR5JIUkkSScJKgktCS/JMsk1yTjJO4k+iUGJRIlHiUpJTUlQSVNJVklZSVwJXwliCWUJaAlrCW4JcQl0CXcJecl8yX/JgsmFyYjJi8mOyZHJlMmXyZrJncmhCaQJpwmqCa0JsAmzCbYJuQm8Cb9JwknFSchJy0nOSdGJ1InXidqJ3YngyePJ5snpye0J8AnzCfZJ+Un8Sf9KAooFigjKC8oOyhIKFQoYChtKHkohiiSKJ4oqyi3KMQo0CjdKOko9ikCKQ8pGykoKTQpQSlNKVopZylzKYApjCmZKaYpsim/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ZNRk6WT+ZRNlKWU+ZVNlaGV9ZZNlqGW9ZdJl6GX9ZhJmJ2Y9ZlJmZ2Z9ZpJmp2a9ZtJm6Gb9ZxJnKGc9Z1NnaGd+Z5NnqWe+Z9Rn6Wf/aBRoKmg/aFVoamiAaJZoq2jBaNZo7GkCaRdpLWlDaVhpbmmEaZlpr2nFadtp8GoGahxqMmpIal1qc2qJap9qtWrKauBq9msMayJrOGtOa2RremuQa6ZrvGvSa+hr/mwUbCpsQGxWbGxsgmyYbK5sxGzabPBtBm0cbTNtSW1fbXVti22hbbhtzm3kbfpuEW4nbj1uU25qboBulm6tbsNu2W7wbwZvHG8zb0lvYG92b4xvo2+5b9Bv5m/9cBNwKnBAcFdwbXCEcJpwsXDHcN5w9HELcSJxOHFPcWZxfHGTcapxwHHXce5yBHIbcjJySHJfcnZyjXKkcrpy0XLocv9zFnMsc0NzWnNxc4hzn3O2c81z5HP6dBF0KHQ/dFZ0bXSEdJt0snTJdOB093UOdSZ1PXVUdWt1gnWZdbB1x3XedfZ2DXYkdjt2UnZqdoF2mHavdsd23nb1dwx3JHc7d1J3aneBd5h3sHfHd9539ngNeCV4PHhUeGt4gniaeLF4yXjgePh5D3kneT55VnlueYV5nXm0ecx543n7ehN6KnpCelp6cXqJeqF6uHrQeuh7AHsXey97R3tfe3Z7jnume7571nvufAV8HXw1fE18ZXx9fJV8rXzFfNx89H0MfSR9PH1UfWx9hH2cfbR9zX3lff1+FX4tfkV+XX51fo1+pX6+ftZ+7n8Gfx5/N39Pf2d/f3+Xf7B/yH/gf/mAEYApgEGAWoBygIqAo4C7gNSA7IEEgR2BNYFOgWaBf4GXgbCByIHhgfmCEoIqgkOCW4J0goyCpYK+gtaC74MHgyCDOYNRg2qDg4Obg7SDzYPlg/6EF4QwhEiEYYR6hJOErITEhN2E9oUPhSiFQYVahXKFi4Wkhb2F1oXvhgiGIYY6hlOGbIaFhp6Gt4bQhumHAocbhzSHTYdnh4CHmYeyh8uH5If9iBeIMIhJiGKIe4iViK6Ix4jgiPqJE4ksiUaJX4l4iZGJq4nEid6J94oQiiqKQ4pdinaKj4qpisKK3Ir1iw+LKItCi1uLdYuOi6iLwovbi/WMDowojEKMW4x1jI+MqIzCjNyM9Y0PjSmNQo1cjXaNkI2pjcON3Y33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"
 
 /***/ }),
-/* 49 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -3105,14 +3130,14 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 49;
+webpackContext.id = 48;
 
 /***/ }),
-/* 50 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./event-bus.js": 51,
+	"./event-bus.js": 50,
 	"./http.js": 7,
 	"./router.js": 0
 };
@@ -3130,10 +3155,10 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 50;
+webpackContext.id = 49;
 
 /***/ }),
-/* 51 */
+/* 50 */
 /***/ (function(module, exports) {
 
 
