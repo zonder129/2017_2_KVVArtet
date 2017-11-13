@@ -1,11 +1,11 @@
 import InitiativeLine from "./InitiativeLine"
-import Unit from "./Unit1";
+import Unit from "./Unit";
 import Pathfinding from "./Pathfinding"
 import Background from "./Background";
 import GameManager from "./GameManager";
 
 /*export default */
-export default class DemoGameModule {
+export default class OnlineGameModule {
     constructor() {
       this.gameManager = new GameManager();
       this.WIDTH = 16;
