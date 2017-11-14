@@ -42,7 +42,6 @@ export default  class Router{
                     this.go(pathname);
                     console.log(pathname);
                 }
-                this.go(window.location.pathname);
             }
         });
         this.go(window.location.pathname);
