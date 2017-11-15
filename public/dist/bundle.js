@@ -2940,7 +2940,9 @@ class UnitManager {
             let timer = this.timeAndRunSkill(nameSkill, sender, target, true, wounded);
             setTimeout(function (sender, target) {
                 // gameManager.spriteManager.getSprite(target.unitOnTile.entity.mapId).setTexture(images[92]);
-                this.spriteManager.getSprite(sender.unitOnTile.entity.mapId).setTexture(this.entities[6 + index]);
+                if (sender.unitOnTile.healthpoint[0] > 0) {
+                    this.spriteManager.getSprite(sender.unitOnTile.entity.mapId).setTexture(this.entities[6 + index]);
+                }
                 this.updateHealth(wounded);
             }.bind(this, sender, target), timer + 300);
         }.bind(this, nameSkill, sender, target), 500);
@@ -2952,7 +2954,7 @@ class UnitManager {
         setTimeout(() => {
             this.removeUnitsInInitiativeLine(DeadUnits);
             DeadUnits.forEach(unit => {
-                this.spriteManager.getSprite(unit.entity.mapId).setTexture(this.conditions[2 + 3 * this.indexUnit[target.unitOnTile.class]]);
+                this.spriteManager.getSprite(unit.entity.mapId).setTexture(this.conditions[2 + 3 * this.indexUnit[unit.class]]);
                 this.spriteManager.getSprite(unit.entity.healthbarId).setVertexs(__WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].madeRectangle(0, 0, 0, 0));
             });
         }, timer + 800);
