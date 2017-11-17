@@ -30,7 +30,8 @@ export default class DemoGameModule {
     }
 
     gamePreRender() {
-        let back = new Background();
+        let numberSchene = 0;
+        let back = new Background(numberSchene);
         back.render();
         this.gameManager.startGameRendering(this.gameStart.bind(this));
     }

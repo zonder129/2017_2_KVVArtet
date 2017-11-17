@@ -44,6 +44,7 @@ export default  class GraphicEngine {
     this.time = now;
     if (deltaTime != 0) {
       document.getElementById('fps').innerHTML = (1 / deltaTime).toFixed(0);
+      document.getElementById('fps').style.color = 'white';
     }
 
     Utils.resize(this.gl);

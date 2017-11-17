@@ -22,12 +22,13 @@ export default class GameManager {
     startGameRendering(callback) {
         console.log('work rendering uints');
         let loaderTextures = new Loader([
-            '/views/singleplay/textures/activeGrass.jpg', '/views/singleplay/textures/activeTile.png', '/views/singleplay/textures/select.png', '/views/singleplay/icons/fullscreen.png'
+            '/views/singleplay/textures/moveTile.png', '/views/singleplay/textures/activeTile.png',
+            '/views/singleplay/textures/select.png', '/views/singleplay/icons/fullscreen.png'
         ], this.engine.gl);
         let loaderAnimations = new Loader([
             '/views/singleplay/animations/fireball.png', '/views/singleplay/animations/Fire 5.png', '/views/singleplay/animations/thunderbolt.png',
             '/views/singleplay/animations/healing.png', '/views/singleplay/animations/blade_flurry.png', '/views/singleplay/animations/attack.png',
-            '/views/singleplay/animations/holly_wrath.png'
+            '/views/singleplay/animations/holly_wrath.png', '/views/singleplay/animations/activeTile.png'
         ], this.engine.gl);
         let loaderConditions = new Loader([
             '/views/singleplay/conditions/WarriorAngry.png',
@@ -82,12 +83,16 @@ export default class GameManager {
 
     initEvents() {
         document.addEventListener('mousemove', function(event) {
-            let x = event.clientX / this.engine.gl.canvas.clientWidth;
-            let y = event.clientY / this.engine.gl.canvas.clientHeight;
-            if (x >= 0.2 && x < 0.8 && y >= 0.065 && y < 0.865 && document.getElementById('menu').hidden && !this.state.AnimationOnMap) {
-                let i = Math.floor(((x - 0.2) / 0.6) / (1 / 16));
-                let j = Math.floor(((y - 0.065) / 0.8) / (1 / 12));
-                if (global.tiledMap[i][j].active) {
+            let x = event.clientX / window.innerWidth;
+            let y = event.clientY /window.innerHeight;
+            let xMin = (1 + global.mapShiftX)/2;
+            let xMax = xMin + 0.6;
+            let yMin = (1 - global.mapShiftY)/2;
+            let yMax = yMin + 0.8;
+            if (x >= xMin && x < xMax && y >= yMin && y < yMax && document.getElementById('menu').hidden && !this.state.AnimationOnMap) {
+                let i = Math.floor(((x - xMin) / 0.6) / (1 / 16));
+                let j = Math.floor(((y - yMin) / 0.8) / (1 / 12));
+                if (i < 16 && j < 12 && global.tiledMap[i][j].active) {
                     this.spriteManager.getSprite(this.activeElem).setTrans(Utils.translationOnMap(j, i));
                 } else {
                     this.spriteManager.getSprite(this.activeElem).setTrans([-2, -2]);
@@ -113,12 +118,33 @@ export default class GameManager {
     initGui() {
         this.activeTile = this.spriteManager.addSprite(-0.9, [
             -2, 3
-        ], this.textures[1], Utils.madeRectangle(0, 0, 1.2 / 16, -(1.2 / 16) * this.ratio));
+        ], this.textures[1], Utils.madeRectangle(0, 0, 1.2 / 16, -(1.2 / 16) * this.ratio), true);
         this.activeElem = this.spriteManager.addSprite(-1, [
             -2, 3
-        ], this.textures[2], Utils.madeRectangle(0, 0, 1.2 / 16, -(1.2 / 16) * this.ratio));
+        ], this.textures[2], Utils.madeRectangle(0, 0, 1.2 / 16, -(1.2 / 16) * this.ratio), true);
         this.spriteManager.addSprite(1, [
             0.95, -1 + 0.05 * this.ratio
         ], this.textures[3], Utils.madeRectangle(0, 0, 0.05, -0.05 * this.ratio), true);
+        document.body.style.height = '100vh';
+        let rigthBar =  document.createElement('div');
+        rigthBar.style.position = 'absolute';
+        rigthBar.style.right = '1vw';
+        rigthBar.style.top = '17.7vh';
+        rigthBar.style.height = '80vh';
+        rigthBar.style.width = '10vw';
+        rigthBar.style.backgroundImage = 'url(\'/views/singleplay/textures/right_bar.png\')';
+        rigthBar.style.backgroundSize = '100% 100%';
+        rigthBar.style.backgroundRepeat = 'no-repeat';
+        document.body.appendChild(rigthBar);
+        let skillBar = document.createElement('div');
+        skillBar.style.position = 'absolute';
+        skillBar.style.right = '32.5vw';
+        skillBar.style.top = '0';
+        skillBar.style.height = '6.5vh';
+        skillBar.style.width = '35vw';
+        skillBar.style.backgroundImage = 'url(\'/views/singleplay/textures/skill_bar.png\')';
+        skillBar.style.backgroundSize = '100% 100%';
+        skillBar.style.backgroundRepeat = 'no-repeat';
+        document.body.appendChild(skillBar);
     }
 }
