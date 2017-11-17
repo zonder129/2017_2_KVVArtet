@@ -13,7 +13,6 @@ function requireAll(r) { r.keys().forEach(r); }
 
 require('./views/main.js');
 require('./views/base.css');
-require('./views/singleplay/textures/wall.jpg');
 
 
 requireAll(require.context('./blocks/', true, /\.(css)$/));

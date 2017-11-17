@@ -1,12 +1,12 @@
 export default class Utils {
   static resize(gl) {
-    let displayWidth = gl.canvas.clientWidth;
-    let displayHeight = gl.canvas.clientHeight;
+    let displayWidth = window.screen.availWidth;
+    let displayHeight = window.screen.availHeight;
     if (gl.canvas.width !== displayWidth || gl.canvas.height !== displayHeight) {
       gl.canvas.width = displayWidth;
       gl.canvas.height = displayHeight;
     }
-    gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
+    gl.viewport(0, 0, window.screen.availWidth, window.screen.availHeight);
   }
 
   static madeRectangle(x0, y0, width, height) {
@@ -21,11 +21,11 @@ export default class Utils {
   }
 
   static translationOnMap(i, j) {
-    return [-0.6 + j*(1.2/16), 0.85 - i*(1.2/16)*16/9];
+    return [global.mapShiftX + j*(1.2/16), global.mapShiftY - i*(1.2/16)*16/9];
   }
 
   static translationForUnits(unit) {
-    return [-0.6 - 0.08 + unit.xpos*(1.2/16), 0.85 - unit.ypos*(1.2/16)*16/9 + (1.2 / 12) * 16/9];
+    return [global.mapShiftX - 0.08 + unit.xpos*(1.2/16), global.mapShiftY - unit.ypos*(1.2/16)*16/9 + (1.2 / 12) * 16/9];
   }
 
   static transOnLowbar(i) {
@@ -33,6 +33,6 @@ export default class Utils {
   }
 
   static transForHealthbar(unit) {
-    return [-0.6 + 0.003 + unit.xpos*(1.2/16), 0.85 - unit.ypos*(1.2/16)*16/9 + (1.2/17)* 16/9];
+    return [global.mapShiftX + 0.003 + unit.xpos*(1.2/16), global.mapShiftY - unit.ypos*(1.2/16)*16/9 + (1.2/17)* 16/9];
   }
 }
