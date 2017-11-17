@@ -131,7 +131,7 @@ export default class GameManager {
         rigthBar.style.right = '1vw';
         rigthBar.style.top = '17.7vh';
         rigthBar.style.height = '80vh';
-        rigthBar.style.width = '10vw';
+        rigthBar.style.width = '8vw';
         rigthBar.style.backgroundImage = 'url(\'/views/singleplay/textures/right_bar.png\')';
         rigthBar.style.backgroundSize = '100% 100%';
         rigthBar.style.backgroundRepeat = 'no-repeat';

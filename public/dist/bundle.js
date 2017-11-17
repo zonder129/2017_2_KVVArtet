@@ -2560,7 +2560,7 @@ class GameManager {
         rigthBar.style.right = '1vw';
         rigthBar.style.top = '17.7vh';
         rigthBar.style.height = '80vh';
-        rigthBar.style.width = '10vw';
+        rigthBar.style.width = '8vw';
         rigthBar.style.backgroundImage = 'url(\'/views/singleplay/textures/right_bar.png\')';
         rigthBar.style.backgroundSize = '100% 100%';
         rigthBar.style.backgroundRepeat = 'no-repeat';
@@ -2940,7 +2940,7 @@ class UnitManager {
             let skillBox = document.createElement('img');
             skillBox.id = 0 + 'box';
             skillBox.style.position = 'absolute';
-            skillBox.style.right = 4.4 + 'vw';
+            skillBox.style.right = 3.4 + 'vw';
             skillBox.style.top = 24.72 + 'vh';
             skillBox.style.width = '3.6vw';
             skillBox.style.height = '6.3vh';
@@ -2949,7 +2949,7 @@ class UnitManager {
             let skillImg = document.createElement('img');
             skillImg.id = 0;
             skillImg.style.position = 'absolute';
-            skillImg.style.right = 4.8 + 'vw';
+            skillImg.style.right = 3.8 + 'vw';
             skillImg.style.top = 25.5 + 'vh';
             skillImg.style.width = '2.7vw';
             skillImg.style.height = '4.6vh';
@@ -2978,7 +2978,7 @@ class UnitManager {
             activeSkillImg.style.left = 32.5 + 'vw';
             activeSkillImg.style.width = '3.5vw';
             activeSkillImg.style.height = '6.5vh';
-            activeSkillImg.src = '/views/singleplay/textures/activeTile.png';
+            activeSkillImg.src = '/views/singleplay/textures/activeSkill.png';
             document.body.appendChild(activeSkillImg);
         } else {
             activeSkillImg.style.left = 32.5 + 'vw';
