@@ -138,7 +138,7 @@ export default class GameManager {
         rigthBar.style.backgroundImage = 'url(\'/views/singleplay/textures/right_bar.png\')';
         rigthBar.style.backgroundSize = '100% 100%';
         rigthBar.style.backgroundRepeat = 'no-repeat';
-        document.body.appendChild(rigthBar);
+        document.getElementsByClassName('container')[0].appendChild(rigthBar);
         let skillBar = document.createElement('div');
         skillBar.style.position = 'absolute';
         skillBar.style.right = '32.5vw';
@@ -148,6 +148,6 @@ export default class GameManager {
         skillBar.style.backgroundImage = 'url(\'/views/singleplay/textures/skill_bar.png\')';
         skillBar.style.backgroundSize = '100% 100%';
         skillBar.style.backgroundRepeat = 'no-repeat';
-        document.body.appendChild(skillBar);
+        document.getElementsByClassName('container')[0].appendChild(skillBar);
     }
 }

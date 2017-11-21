@@ -2588,7 +2588,7 @@ class GameManager {
         rigthBar.style.backgroundImage = 'url(\'/views/singleplay/textures/right_bar.png\')';
         rigthBar.style.backgroundSize = '100% 100%';
         rigthBar.style.backgroundRepeat = 'no-repeat';
-        document.body.appendChild(rigthBar);
+        document.getElementsByClassName('container')[0].appendChild(rigthBar);
         let skillBar = document.createElement('div');
         skillBar.style.position = 'absolute';
         skillBar.style.right = '32.5vw';
@@ -2598,7 +2598,7 @@ class GameManager {
         skillBar.style.backgroundImage = 'url(\'/views/singleplay/textures/skill_bar.png\')';
         skillBar.style.backgroundSize = '100% 100%';
         skillBar.style.backgroundRepeat = 'no-repeat';
-        document.body.appendChild(skillBar);
+        document.getElementsByClassName('container')[0].appendChild(skillBar);
     }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = GameManager;
@@ -2974,7 +2974,7 @@ class UnitManager {
             skillBox.style.width = '3.6vw';
             skillBox.style.height = '6.3vh';
             skillBox.src = '/views/singleplay/textures/skillBox.png';
-            document.body.appendChild(skillBox);
+            document.getElementsByClassName('container')[0].appendChild(skillBox);
             let skillImg = document.createElement('img');
             skillImg.id = 0;
             skillImg.style.position = 'absolute';
@@ -2983,7 +2983,7 @@ class UnitManager {
             skillImg.style.width = '2.7vw';
             skillImg.style.height = '4.6vh';
             skillImg.src = '/views/singleplay/icons/' + name + '.png';
-            document.body.appendChild(skillImg);
+            document.getElementsByClassName('container')[0].appendChild(skillImg);
         }, 500);
     }
 
@@ -3008,7 +3008,7 @@ class UnitManager {
             activeSkillImg.style.width = '3.7vw';
             activeSkillImg.style.height = 3.7 * global.ratio + 'vh';
             activeSkillImg.src = '/views/singleplay/textures/activeTile.png';
-            document.body.appendChild(activeSkillImg);
+            document.getElementsByClassName('container')[0].appendChild(activeSkillImg);
         } else {
             activeSkillImg.style.left = 32.5 + 'vw';
         }
@@ -3022,7 +3022,7 @@ class UnitManager {
             skillImg.style.width = '2.6vw';
             skillImg.style.height = 2.6 * global.ratio + 'vh';
             skillImg.src = '/views/singleplay/icons/' + skill.name + '.png';
-            document.body.appendChild(skillImg);
+            document.getElementsByClassName('container')[0].appendChild(skillImg);
         }.bind(this));
 
         // this.animationManager.animationActiveTile(unit);

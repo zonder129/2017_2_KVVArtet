@@ -182,7 +182,7 @@ export default class UnitManager {
             skillBox.style.width = '3.6vw';
             skillBox.style.height = '6.3vh';
             skillBox.src = '/views/singleplay/textures/skillBox.png';
-            document.body.appendChild(skillBox);
+            document.getElementsByClassName('container')[0].appendChild(skillBox);
             let skillImg = document.createElement('img');
             skillImg.id = 0;
             skillImg.style.position = 'absolute';
@@ -191,7 +191,7 @@ export default class UnitManager {
             skillImg.style.width = '2.7vw';
             skillImg.style.height = '4.6vh';
             skillImg.src = '/views/singleplay/icons/' + name + '.png';
-            document.body.appendChild(skillImg);
+            document.getElementsByClassName('container')[0].appendChild(skillImg);
         }, 500);
     }
 
@@ -216,7 +216,7 @@ export default class UnitManager {
             activeSkillImg.style.width = '3.7vw';
             activeSkillImg.style.height = 3.7*global.ratio + 'vh';
             activeSkillImg.src = '/views/singleplay/textures/activeTile.png';
-            document.body.appendChild(activeSkillImg);
+            document.getElementsByClassName('container')[0].appendChild(activeSkillImg);
         } else {
             activeSkillImg.style.left = 32.5 + 'vw';
         }
@@ -230,7 +230,7 @@ export default class UnitManager {
             skillImg.style.width = '2.6vw';
             skillImg.style.height = 2.6*global.ratio + 'vh';
             skillImg.src = '/views/singleplay/icons/' + skill.name + '.png';
-            document.body.appendChild(skillImg);
+            document.getElementsByClassName('container')[0].appendChild(skillImg);
         }.bind(this));
 
         // this.animationManager.animationActiveTile(unit);
