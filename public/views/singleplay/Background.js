@@ -1,7 +1,6 @@
 import GraphicEngine from './GraphicEngine';
 import Utils from './Utils';
 import Loader from './Loader';
-//import rere from '/views/singleplay/textures/wall.jpg';
 
 export default class Background {
     constructor(numberSchene) {
@@ -27,8 +26,16 @@ export default class Background {
                 }
             }.bind(this));
         }.bind(this));
-        this.engine.addSprite([-0.6, 0.65], this.textures[5], Utils.madeRectangle(0, 0, 1.2, -(1.2 / 16) * 12 * this.ratio), true,
-            Utils.madeRectangle(0.006, 0.007, 0.9915, 0.993)); // сетка
+        for (let i = -0.6; i <= 0.6; i += 1.2/16) {
+            this.engine.addColorSprite([i, 0.65], Utils.madeRectangle(0, 0, 0.001, -1.6), [1, 1, 1, 1]);
+        }
+        for (let i = -0.95; i <= 0.65; i += 1.2/16*global.ratio) {
+            this.engine.addColorSprite([-0.6, i], Utils.madeRectangle(0, 0, 1.2, -0.0018), [1, 1, 1, 1]);
+        }
+        this.engine.addSprite([-0.6, 0.995], this.textures[5], Utils.madeRectangle(0, 0, 0.1875, -0.13), true);
+        this.engine.addSprite([0.68, 0.97], this.textures[6], Utils.madeRectangle(0, 0, 0.07, -0.07*global.ratio));
+        this.engine.addSprite([0.78, 0.97], this.textures[7], Utils.madeRectangle(0, 0, 0.07, -0.07*global.ratio));
+        this.engine.addSprite([0.88, 0.97], this.textures[8], Utils.madeRectangle(0, 0, 0.07, -0.07*global.ratio));
     }
 
     render() {
@@ -37,7 +44,8 @@ export default class Background {
             case 0:
                 loader = new Loader(['/views/singleplay/textures/wall0.png', '/views/singleplay/textures/wall1.png',
                     '/views/singleplay/textures/wall2.png', '/views/singleplay/textures/wall3.png', '/views/singleplay/textures/back1.png',
-                    '/views/singleplay/textures/grid.png'], this.engine.gl);
+                    '/views/singleplay/textures/timer.png', '/views/singleplay/icons/talk.png',  '/views/singleplay/icons/bag.png',
+                    '/views/singleplay/icons/settings.png'], this.engine.gl);
                 break;
         }
         loader.load(this.onLoad.bind(this));
@@ -46,5 +54,8 @@ export default class Background {
         this.textures = textures;
         this.InitMapAndSprites();
         this.engine.render();
+        window.addEventListener('resize', function() {
+            this.engine.render(performance.now());
+        }.bind(this));
     }
 }

@@ -280,7 +280,19 @@ module.exports = g;
   }
 
   static transOnLowbar(i) {
-    return [-0.55 + 0.005 + i * 0.1, -0.79 - 0.01];
+    return [-0.95, 0.65 - i * 0.17];
+  }
+
+  static transOnLowbarHealth(i) {
+    return [-0.95, 0.65 - i * 0.17 - 0.14];
+  }
+
+  static transActiveCircle(i) {
+    return [-0.95 - 0.03, 0.65 - i * 0.17 - 0.05];
+  }
+
+  static transActionPoint(i) {
+    return [-0.95 + 0.085, 0.65 - i * 0.17 - 0.032];
   }
 
   static transForHealthbar(unit) {
@@ -754,12 +766,9 @@ class GraphicEngine {
       alert('Error in initializate ' + idCanvas + ': Беда, брат! Твой браузер не поддерживает WebGl, но ты держись :D');
       return;
     }
-    window.addEventListener('resize', function () {
-      this.render(performance.now());
-    }.bind(this));
     this.programForSprite = new __WEBPACK_IMPORTED_MODULE_1__Program__["a" /* default */](this.gl, __WEBPACK_IMPORTED_MODULE_0__Shaders__["c" /* vertexShader */], __WEBPACK_IMPORTED_MODULE_0__Shaders__["a" /* fragmentShader */]).create();
     this.programForColorObj = new __WEBPACK_IMPORTED_MODULE_1__Program__["a" /* default */](this.gl, __WEBPACK_IMPORTED_MODULE_0__Shaders__["d" /* vertexShader1 */], __WEBPACK_IMPORTED_MODULE_0__Shaders__["b" /* fragmentShader1 */]).create();
-    this.time = performance.now() + 1;
+    // this.time = performance.now() + 1;
   }
 
   addSprite(translation, texture, vertexs, blend, texCoord) {
@@ -779,13 +788,13 @@ class GraphicEngine {
   }
 
   render(now) {
-    now *= 0.001;
-    let deltaTime = now - this.time;
-    this.time = now;
-    if (deltaTime != 0) {
-      document.getElementById('fps').innerHTML = (1 / deltaTime).toFixed(0);
-      document.getElementById('fps').style.color = 'white';
-    }
+    // now *= 0.001;
+    // let deltaTime = now - this.time;
+    // this.time = now;
+    // if (deltaTime != 0) {
+    //   document.getElementById('fps').innerHTML = (1 / deltaTime).toFixed(0);
+    //   document.getElementById('fps').style.color = 'white';
+    // }
 
     __WEBPACK_IMPORTED_MODULE_2__Utils__["a" /* default */].resize(this.gl);
     this.gl.clearColor(0, 0, 0, 0);
@@ -1520,8 +1529,11 @@ class DemoGameModule {
     gameLoop() {
         if (!this.isPartyDead() && !this.isEnemiesDead()) {
             this.timer -= this.interval;
-            document.getElementById('time').innerHTML = '00:' + Math.ceil(this.timer / 1000);
-            document.getElementById('time').style.fontSize = '2em';
+            let sec = Math.ceil(this.timer / 1000);
+            if (sec < 10) {
+                sec = '0' + sec;
+            }
+            document.getElementById('time').innerHTML = '00:' + sec;
             //где-то здесь есть работа с АИ
             //отрисовка скилов для каждого персонажа, информация для dropdown и позиций
             if (global.actionDeque.length > 0) {
@@ -1663,14 +1675,14 @@ class DemoGameModule {
 
     loseGame() {
         this.stopGameLoop();
+        document.getElementById('lose').removeAttribute('hidden');
         //createoverlaylose
     }
 
     winGame() {
         setTimeout(function () {
             document.getElementsByClassName('container')[0].setAttribute('class', 'blur container');
-            document.getElementById('menu').removeAttribute('hidden');
-            document.getElementById('menu').innerHTML = 'Вы победили!';
+            document.getElementById('win').removeAttribute('hidden');
         }, 1000);
         this.stopGameLoop();
         //createoverlaywin
@@ -2104,7 +2116,6 @@ class Pathfinding {
 
 
 
-//import rere from '/views/singleplay/textures/wall.jpg';
 
 class Background {
     constructor(numberSchene) {
@@ -2130,14 +2141,23 @@ class Background {
                 }
             }.bind(this));
         }.bind(this));
-        this.engine.addSprite([-0.6, 0.65], this.textures[5], __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].madeRectangle(0, 0, 1.2, -(1.2 / 16) * 12 * this.ratio), true, __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].madeRectangle(0.006, 0.007, 0.9915, 0.993)); // сетка
+        for (let i = -0.6; i <= 0.6; i += 1.2 / 16) {
+            this.engine.addColorSprite([i, 0.65], __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].madeRectangle(0, 0, 0.001, -1.6), [1, 1, 1, 1]);
+        }
+        for (let i = -0.95; i <= 0.65; i += 1.2 / 16 * global.ratio) {
+            this.engine.addColorSprite([-0.6, i], __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].madeRectangle(0, 0, 1.2, -0.0018), [1, 1, 1, 1]);
+        }
+        this.engine.addSprite([-0.6, 0.995], this.textures[5], __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].madeRectangle(0, 0, 0.1875, -0.13), true);
+        this.engine.addSprite([0.68, 0.97], this.textures[6], __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].madeRectangle(0, 0, 0.07, -0.07 * global.ratio));
+        this.engine.addSprite([0.78, 0.97], this.textures[7], __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].madeRectangle(0, 0, 0.07, -0.07 * global.ratio));
+        this.engine.addSprite([0.88, 0.97], this.textures[8], __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].madeRectangle(0, 0, 0.07, -0.07 * global.ratio));
     }
 
     render() {
         let loader;
         switch (this.schene) {
             case 0:
-                loader = new __WEBPACK_IMPORTED_MODULE_2__Loader__["a" /* default */](['/views/singleplay/textures/wall0.png', '/views/singleplay/textures/wall1.png', '/views/singleplay/textures/wall2.png', '/views/singleplay/textures/wall3.png', '/views/singleplay/textures/back1.png', '/views/singleplay/textures/grid.png'], this.engine.gl);
+                loader = new __WEBPACK_IMPORTED_MODULE_2__Loader__["a" /* default */](['/views/singleplay/textures/wall0.png', '/views/singleplay/textures/wall1.png', '/views/singleplay/textures/wall2.png', '/views/singleplay/textures/wall3.png', '/views/singleplay/textures/back1.png', '/views/singleplay/textures/timer.png', '/views/singleplay/icons/talk.png', '/views/singleplay/icons/bag.png', '/views/singleplay/icons/settings.png'], this.engine.gl);
                 break;
         }
         loader.load(this.onLoad.bind(this));
@@ -2146,6 +2166,9 @@ class Background {
         this.textures = textures;
         this.InitMapAndSprites();
         this.engine.render();
+        window.addEventListener('resize', function () {
+            this.engine.render(performance.now());
+        }.bind(this));
     }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = Background;
@@ -2495,7 +2518,7 @@ class GameManager {
 
     startGameRendering(callback) {
         console.log('work rendering uints');
-        let loaderTextures = new __WEBPACK_IMPORTED_MODULE_3__Loader__["a" /* default */](['/views/singleplay/textures/moveTile.png', '/views/singleplay/textures/activeTile.png', '/views/singleplay/textures/select.png', '/views/singleplay/icons/fullscreen.png'], this.engine.gl);
+        let loaderTextures = new __WEBPACK_IMPORTED_MODULE_3__Loader__["a" /* default */](['/views/singleplay/textures/moveTile.png', '/views/singleplay/textures/activeTile.png', '/views/singleplay/textures/select.png', '/views/singleplay/icons/fullscreen.png', '/views/singleplay/textures/actionBack.png', '/views/singleplay/icons/circle.png', '/views/singleplay/icons/radio2.png', '/views/singleplay/icons/radio1.png'], this.engine.gl);
         let loaderAnimations = new __WEBPACK_IMPORTED_MODULE_3__Loader__["a" /* default */](['/views/singleplay/animations/fireball.png', '/views/singleplay/animations/Fire 5.png', '/views/singleplay/animations/thunderbolt.png', '/views/singleplay/animations/healing.png', '/views/singleplay/animations/blade_flurry.png', '/views/singleplay/animations/attack.png', '/views/singleplay/animations/holly_wrath.png', '/views/singleplay/animations/activeTile.png'], this.engine.gl);
         let loaderConditions = new __WEBPACK_IMPORTED_MODULE_3__Loader__["a" /* default */](['/views/singleplay/conditions/WarriorAngry.png', '/views/singleplay/conditions/WarriorAttack.png', '/views/singleplay/conditions/WarriorDead.png', '/views/singleplay/conditions/MageAngry.png', '/views/singleplay/conditions/MageAttack.png', '/views/singleplay/conditions/MageDead.png', '/views/singleplay/conditions/ThiefAngry.png', '/views/singleplay/conditions/ThiefAttack.png', '/views/singleplay/conditions/ThiefDead.png', '/views/singleplay/conditions/PriestAngry.png', '/views/singleplay/conditions/PriestAttack.png', '/views/singleplay/conditions/PriestDead.png', '/views/singleplay/conditions/Skeleton1Angry.png', '/views/singleplay/conditions/Skeleton1Attack.png', '/views/singleplay/conditions/Skeleton1Dead.png', '/views/singleplay/conditions/Skeleton2Angry.png', '/views/singleplay/conditions/Skeleton2Attack.png', '/views/singleplay/conditions/Skeleton2Dead.png'], this.engine.gl);
         let loaderEntities = new __WEBPACK_IMPORTED_MODULE_3__Loader__["a" /* default */](['/views/singleplay/entity/warrior_portrait.png', '/views/singleplay/entity/mage_portrait.png', '/views/singleplay/entity/thief_portrait.png', '/views/singleplay/entity/priest_portrait.png', '/views/singleplay/entity/skeleton1_portrait.png', '/views/singleplay/entity/skeleton2_portrait.png', '/views/singleplay/entity/warrior.png', '/views/singleplay/entity/mage.png', '/views/singleplay/entity/thief.png', '/views/singleplay/entity/priest.png', '/views/singleplay/entity/skeleton1.png', '/views/singleplay/entity/skeleton2.png'], this.engine.gl);
@@ -2507,8 +2530,8 @@ class GameManager {
                         this.initGui();
                         this.initEvents();
                         let animation = new __WEBPACK_IMPORTED_MODULE_7__Animation__["a" /* default */](this);
-                        this.animtaionManager = new __WEBPACK_IMPORTED_MODULE_5__AnimationManager__["a" /* default */](animation, this.spriteManager, this.activeTile, this.state, animations);
-                        this.unitManager = new __WEBPACK_IMPORTED_MODULE_6__UnitManager__["a" /* default */](animation, this.animtaionManager, this.spriteManager, this.activeTile, this.state, entities, textures, conditions);
+                        this.animtaionManager = new __WEBPACK_IMPORTED_MODULE_5__AnimationManager__["a" /* default */](animation, this.spriteManager, this.activeTile, this.actionPoint, this.state, animations, this.textures[7]);
+                        this.unitManager = new __WEBPACK_IMPORTED_MODULE_6__UnitManager__["a" /* default */](animation, this.animtaionManager, this.spriteManager, this.activeTile, this.actionPoint, this.state, entities, textures, conditions);
                         this.engine.render();
                     }, callback);
                 });
@@ -2524,7 +2547,7 @@ class GameManager {
             let xMax = xMin + 0.6;
             let yMin = (1 - global.mapShiftY) / 2;
             let yMax = yMin + 0.8;
-            if (x >= xMin && x < xMax && y >= yMin && y < yMax && document.getElementById('menu').hidden && !this.state.AnimationOnMap) {
+            if (x >= xMin && x < xMax && y >= yMin && y < yMax && document.getElementById('win').hidden && document.getElementById('lose').hidden && !this.state.AnimationOnMap) {
                 let i = Math.floor((x - xMin) / 0.6 / (1 / 16));
                 let j = Math.floor((y - yMin) / 0.8 / (1 / 12));
                 if (i < 16 && j < 12 && global.tiledMap[i][j].active) {
@@ -2554,6 +2577,7 @@ class GameManager {
         this.activeTile = this.spriteManager.addSprite(-0.9, [-2, 3], this.textures[1], __WEBPACK_IMPORTED_MODULE_4__Utils__["a" /* default */].madeRectangle(0, 0, 1.2 / 16, -(1.2 / 16) * this.ratio), true);
         this.activeElem = this.spriteManager.addSprite(-1, [-2, 3], this.textures[2], __WEBPACK_IMPORTED_MODULE_4__Utils__["a" /* default */].madeRectangle(0, 0, 1.2 / 16, -(1.2 / 16) * this.ratio), true);
         this.spriteManager.addSprite(1, [0.95, -1 + 0.05 * this.ratio], this.textures[3], __WEBPACK_IMPORTED_MODULE_4__Utils__["a" /* default */].madeRectangle(0, 0, 0.05, -0.05 * this.ratio), true);
+        this.actionPoint = this.spriteManager.addSprite(0, __WEBPACK_IMPORTED_MODULE_4__Utils__["a" /* default */].transActionPoint(0), this.textures[6], __WEBPACK_IMPORTED_MODULE_4__Utils__["a" /* default */].madeRectangle(0, 0, 0.023, -0.050 * global.ratio), true);
         document.body.style.height = '100vh';
         let rigthBar = document.createElement('div');
         rigthBar.style.position = 'absolute';
@@ -2564,17 +2588,17 @@ class GameManager {
         rigthBar.style.backgroundImage = 'url(\'/views/singleplay/textures/right_bar.png\')';
         rigthBar.style.backgroundSize = '100% 100%';
         rigthBar.style.backgroundRepeat = 'no-repeat';
-        document.body.appendChild(rigthBar);
+        document.getElementsByClassName('container')[0].appendChild(rigthBar);
         let skillBar = document.createElement('div');
         skillBar.style.position = 'absolute';
         skillBar.style.right = '32.5vw';
         skillBar.style.top = '0';
-        skillBar.style.height = '6.5vh';
         skillBar.style.width = '35vw';
+        skillBar.style.height = '7vh';
         skillBar.style.backgroundImage = 'url(\'/views/singleplay/textures/skill_bar.png\')';
         skillBar.style.backgroundSize = '100% 100%';
         skillBar.style.backgroundRepeat = 'no-repeat';
-        document.body.appendChild(skillBar);
+        document.getElementsByClassName('container')[0].appendChild(skillBar);
     }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = GameManager;
@@ -2655,11 +2679,13 @@ class State {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Utils__ = __webpack_require__(3);
 
 class AnimationManager {
-    constructor(Animation, spriteManager, activeTile, state, animations) {
+    constructor(Animation, spriteManager, activeTile, actionPoint, state, animations, texture) {
         this.Animation = Animation;
         this.state = state;
         this.spriteManager = spriteManager;
+        this.texture = texture;
         this.activeTile = activeTile;
+        this.actionPoint = actionPoint;
         this.animations = animations;
         // this.activetile = this.spriteManager.addSprite(12, [-2, -2], this.animations[7], Utils.madeRectangle(0, 0, 1.2 / 16 + 0.04, (1.2/16)*global.ratio - 0.06), true,
         //     Utils.madeRectangle(0, 0, 1/5, -1/4));
@@ -2680,6 +2706,7 @@ class AnimationManager {
         if (this.stateCheck(this.movingTo.bind(this, TileStart, path))) {
             return;
         }
+        this.spriteManager.getSprite(this.actionPoint).setTexture(this.texture);
         let unit = TileStart.unitOnTile;
         for (let i = path.length - 1; i >= 0; i--) {
             if (i == path.length - 1) {
@@ -2775,7 +2802,7 @@ class AnimationManager {
 
 
 class UnitManager {
-    constructor(Animation, animationManager, spriteManager, activeTile, state, entities, textures, conditions) {
+    constructor(Animation, animationManager, spriteManager, activeTile, actionPoint, state, entities, textures, conditions) {
         this.Animation = Animation;
         this.units = [];
         this.ratio = 16 / 9;
@@ -2786,6 +2813,9 @@ class UnitManager {
         this.conditions = conditions;
         this.firstActiveUnit = true;
         this.activeTile = activeTile;
+        this.circle = spriteManager.addSprite(0, __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].transActiveCircle(0), this.textures[5], __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].madeRectangle(0, 0, 0.015, -0.015 * global.ratio), true);
+        this.actionPoint = actionPoint;
+        this.activeIndex = 0;
         this.possibleMoves = [];
         this.dropMenu = 0;
         this.state = state;
@@ -2872,8 +2902,9 @@ class UnitManager {
 
     addUnit(unit) {
         unit.entity = new __WEBPACK_IMPORTED_MODULE_0__Entity__["a" /* default */]();
-        // unit.entity.lowbarId = this.spriteManager.addSprite(0, Utils.transOnLowbar(this.units.length),this.entities[this.indexUnit[unit.class]], Utils.madeRectangle(0, 0, 0.09, -0.09 * this.ratio), true);
+        unit.entity.lowbarId = this.spriteManager.addSprite(0, __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].transOnLowbar(this.units.length), this.entities[this.indexUnit[unit.class]], __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].madeRectangle(0, 0, 0.075, -0.075 * this.ratio), true);
         unit.entity.mapId = this.spriteManager.addSprite(unit.ypos, __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].translationForUnits(unit), this.entities[6 + this.indexUnit[unit.class]], __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].madeRectangle(0, 0, 1.2 / 9 * 1.7, -(1.2 / 9) * 1.7 * this.ratio), true);
+        unit.entity.lowbarHealthId = this.spriteManager.addColorSprite(0, __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].transOnLowbarHealth(this.units.length), __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].madeRectangle(0, 0, 0.075, -0.015), [250 / 255, 44 / 255, 31 / 255, 1.0]);
         unit.entity.healthbarId = this.spriteManager.addColorSprite(unit.ypos, __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].transForHealthbar(unit), __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].madeRectangle(0, 0, 1.2 / 16 - 0.006, -0.015), [250 / 255, 44 / 255, 31 / 255, 1.0]);
         this.units.push(unit);
     }
@@ -2882,9 +2913,7 @@ class UnitManager {
         if (this.stateCheck(this.changeActiveUnit.bind(this))) {
             return;
         }
-        let x = this.units[0];
-        this.units.splice(0, 1);
-        this.units.push(x);
+
         let t = __WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].transOnLowbar(0);
         this.Animation.MoveAnimation(t, [t[0], t[1] + 0.17], 0.5, this.units[this.units.length - 1].entity.lowbarId);
         for (let i = 0; i < this.units.length - 1; i++) {
@@ -2945,7 +2974,7 @@ class UnitManager {
             skillBox.style.width = '3.6vw';
             skillBox.style.height = '6.3vh';
             skillBox.src = '/views/singleplay/textures/skillBox.png';
-            document.body.appendChild(skillBox);
+            document.getElementsByClassName('container')[0].appendChild(skillBox);
             let skillImg = document.createElement('img');
             skillImg.id = 0;
             skillImg.style.position = 'absolute';
@@ -2954,7 +2983,7 @@ class UnitManager {
             skillImg.style.width = '2.7vw';
             skillImg.style.height = '4.6vh';
             skillImg.src = '/views/singleplay/icons/' + name + '.png';
-            document.body.appendChild(skillImg);
+            document.getElementsByClassName('container')[0].appendChild(skillImg);
         }, 500);
     }
 
@@ -2976,10 +3005,10 @@ class UnitManager {
             activeSkillImg.style.position = 'absolute';
             activeSkillImg.style.top = '0';
             activeSkillImg.style.left = 32.5 + 'vw';
-            activeSkillImg.style.width = '3.5vw';
-            activeSkillImg.style.height = '6.5vh';
-            activeSkillImg.src = '/views/singleplay/textures/activeSkill.png';
-            document.body.appendChild(activeSkillImg);
+            activeSkillImg.style.width = '3.7vw';
+            activeSkillImg.style.height = 3.7 * global.ratio + 'vh';
+            activeSkillImg.src = '/views/singleplay/textures/activeTile.png';
+            document.getElementsByClassName('container')[0].appendChild(activeSkillImg);
         } else {
             activeSkillImg.style.left = 32.5 + 'vw';
         }
@@ -2988,15 +3017,21 @@ class UnitManager {
             let skillImg = document.createElement('img');
             skillImg.className = 'skill';
             skillImg.style.position = 'absolute';
-            skillImg.style.top = '0.8vh';
-            skillImg.style.left = i * 3.5 + 0.4 + 32.5 + 'vw';
-            skillImg.style.width = '2.7vw';
-            skillImg.style.height = '4.6vh';
+            skillImg.style.top = '1.1vh';
+            skillImg.style.left = i * 3.5 + 0.45 + 32.5 + 'vw';
+            skillImg.style.width = '2.6vw';
+            skillImg.style.height = 2.6 * global.ratio + 'vh';
             skillImg.src = '/views/singleplay/icons/' + skill.name + '.png';
-            document.body.appendChild(skillImg);
+            document.getElementsByClassName('container')[0].appendChild(skillImg);
         }.bind(this));
 
         // this.animationManager.animationActiveTile(unit);
+        while (this.units[this.activeIndex % this.units.length].isDead()) {
+            this.activeIndex++;
+        }
+        this.spriteManager.getSprite(this.circle).setTrans(__WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].transActiveCircle(this.activeIndex % this.units.length));
+        this.spriteManager.getSprite(this.actionPoint).setTrans(__WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].transActionPoint(this.activeIndex++ % this.units.length));
+        this.spriteManager.getSprite(this.actionPoint).setTexture(this.textures[6]);
         this.spriteManager.getSprite(this.activeTile).setTrans(__WEBPACK_IMPORTED_MODULE_1__Utils__["a" /* default */].translationOnMap(unit.ypos, unit.xpos));
         document.onmousedown = function (event) {
             let x = event.clientX / window.innerWidth;
@@ -3005,7 +3040,7 @@ class UnitManager {
             let xMax = xMin + 0.6;
             let yMin = (1 - global.mapShiftY) / 2;
             let yMax = yMin + 0.8;
-            if (event.which === 1 && x >= xMin && x < xMax && y >= yMin && y < yMax && document.getElementById('menu').hidden && this.dropMenu === 0 && !this.state.AnimationOnMap) {
+            if (event.which === 1 && x >= xMin && x < xMax && y >= yMin && y < yMax && document.getElementById('win').hidden && document.getElementById('lose').hidden && this.dropMenu === 0 && !this.state.AnimationOnMap) {
                 let i = Math.floor((x - xMin) / 0.6 / (1 / 16));
                 let j = Math.floor((y - yMin) / 0.8 / (1 / 12));
                 let div = document.createElement('div');
@@ -3075,6 +3110,7 @@ class UnitManager {
     }
 
     unitAttack(nameSkill, sender, target, wounded) {
+        this.spriteManager.getSprite(this.actionPoint).setTexture(this.textures[7]);
         this.updateSkillbar(nameSkill);
         let index = this.indexUnit[sender.unitOnTile.class];
         this.spriteManager.getSprite(sender.unitOnTile.entity.mapId).setTexture(this.conditions[3 * index]);
@@ -3259,7 +3295,7 @@ class Animation {
 /* 45 */
 /***/ (function(module, exports) {
 
-module.exports = "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Document</title>\n  <link rel=\"stylesheet\" href=\"/views/singleplay/style.css\">\n</head>\n\n<body>\n  <div class=\"container\">\n    <canvas id=\"background\"></canvas>\n    <canvas id=\"canvas\"></canvas>\n    <div class=\"fps\">\n      FPS: <span id=\"fps\"></span>\n    </div>\n    <div style=\"position: relative;\">\n      <span style=\"position:absolute; left:6.3vw; top:31vh;\" id=\"time\"></span>\n    </div>\n  </div>\n  <div hidden id=\"menu\" style=\"background: yellow; padding: 5px;position:absolute;top:45vh;left:45vw;\">\n  </div>\n</body>\n\n</html>\n";
+module.exports = "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n  <meta charset=\"UTF-8\">\n  <title>Document</title>\n  <link rel=\"stylesheet\" href=\"/views/singleplay/style.css\">\n</head>\n\n<body>\n  <div class=\"container\">\n    <canvas id=\"background\"></canvas>\n    <canvas id=\"canvas\"></canvas>\n    <div style=\"position: relative;\">\n      <span style=\"position:absolute; left:20.8vw; top:2vh;font-size:1.5vw;color: white\" id=\"time\"></span>\n    </div>\n  </div>\n  <img hidden id=\"win\" style=\"position:absolute;width: 100vw; height: 100vh;\" src=\"/views/singleplay/textures/win.png\">\n  <img hidden id=\"lose\" style=\"position:absolute;width: 100vw; height: 100vh;\" src=\"/views/singleplay/textures/lose.png\">\n  </img>\n</body>\n\n</html>\n";
 
 /***/ }),
 /* 46 */
