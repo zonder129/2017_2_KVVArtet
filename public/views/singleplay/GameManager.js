@@ -23,7 +23,9 @@ export default class GameManager {
         console.log('work rendering uints');
         let loaderTextures = new Loader([
             '/views/singleplay/textures/moveTile.png', '/views/singleplay/textures/activeTile.png',
-            '/views/singleplay/textures/select.png', '/views/singleplay/icons/fullscreen.png'
+            '/views/singleplay/textures/select.png', '/views/singleplay/icons/fullscreen.png',
+            '/views/singleplay/textures/actionBack.png', '/views/singleplay/icons/circle.png',
+            '/views/singleplay/icons/radio2.png', '/views/singleplay/icons/radio1.png'
         ], this.engine.gl);
         let loaderAnimations = new Loader([
             '/views/singleplay/animations/fireball.png', '/views/singleplay/animations/Fire 5.png', '/views/singleplay/animations/thunderbolt.png',
@@ -72,8 +74,8 @@ export default class GameManager {
                         this.initGui();
                         this.initEvents();
                         let animation = new Animation(this);
-                        this.animtaionManager = new AnimationManager(animation, this.spriteManager, this.activeTile, this.state, animations);
-                        this.unitManager = new UnitManager(animation, this.animtaionManager, this.spriteManager, this.activeTile, this.state, entities, textures, conditions);
+                        this.animtaionManager = new AnimationManager(animation, this.spriteManager, this.activeTile, this.actionPoint, this.state, animations, this.textures[7]);
+                        this.unitManager = new UnitManager(animation, this.animtaionManager, this.spriteManager, this.activeTile, this.actionPoint, this.state, entities, textures, conditions);
                         this.engine.render();
                     }, callback);
                 });
@@ -89,7 +91,7 @@ export default class GameManager {
             let xMax = xMin + 0.6;
             let yMin = (1 - global.mapShiftY)/2;
             let yMax = yMin + 0.8;
-            if (x >= xMin && x < xMax && y >= yMin && y < yMax && document.getElementById('menu').hidden && !this.state.AnimationOnMap) {
+            if (x >= xMin && x < xMax && y >= yMin && y < yMax && document.getElementById('win').hidden && document.getElementById('lose').hidden && !this.state.AnimationOnMap) {
                 let i = Math.floor(((x - xMin) / 0.6) / (1 / 16));
                 let j = Math.floor(((y - yMin) / 0.8) / (1 / 12));
                 if (i < 16 && j < 12 && global.tiledMap[i][j].active) {
@@ -125,6 +127,7 @@ export default class GameManager {
         this.spriteManager.addSprite(1, [
             0.95, -1 + 0.05 * this.ratio
         ], this.textures[3], Utils.madeRectangle(0, 0, 0.05, -0.05 * this.ratio), true);
+        this.actionPoint = this.spriteManager.addSprite(0, Utils.transActionPoint(0), this.textures[6], Utils.madeRectangle(0, 0, 0.023, -0.050*global.ratio), true);
         document.body.style.height = '100vh';
         let rigthBar =  document.createElement('div');
         rigthBar.style.position = 'absolute';
@@ -140,8 +143,8 @@ export default class GameManager {
         skillBar.style.position = 'absolute';
         skillBar.style.right = '32.5vw';
         skillBar.style.top = '0';
-        skillBar.style.height = '6.5vh';
         skillBar.style.width = '35vw';
+        skillBar.style.height = '7vh';
         skillBar.style.backgroundImage = 'url(\'/views/singleplay/textures/skill_bar.png\')';
         skillBar.style.backgroundSize = '100% 100%';
         skillBar.style.backgroundRepeat = 'no-repeat';

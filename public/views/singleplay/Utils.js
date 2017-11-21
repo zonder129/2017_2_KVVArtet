@@ -29,7 +29,19 @@ export default class Utils {
   }
 
   static transOnLowbar(i) {
-    return [-0.55 + 0.005 + i*0.1, -0.79 - 0.01];
+    return [-0.95, 0.65 - i*0.17];
+  }
+
+  static transOnLowbarHealth(i) {
+    return [-0.95, 0.65 - i*0.17 - 0.14]
+  }
+
+  static transActiveCircle(i) {
+    return [-0.95 - 0.03,  0.65 - i*0.17 - 0.05];
+  }
+
+  static transActionPoint(i) {
+      return [-0.95 + 0.085,  0.65 - i*0.17 - 0.032];
   }
 
   static transForHealthbar(unit) {

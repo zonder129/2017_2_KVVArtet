@@ -60,8 +60,11 @@ export default class DemoGameModule {
     gameLoop() {
         if (!this.isPartyDead() && !this.isEnemiesDead()) {
             this.timer -= this.interval;
-            document.getElementById('time').innerHTML = '00:' + Math.ceil(this.timer / 1000);
-            document.getElementById('time').style.fontSize = '2em';
+            let sec = Math.ceil(this.timer/1000);
+            if (sec < 10) {
+                sec = '0' + sec;
+            }
+            document.getElementById('time').innerHTML = '00:' + sec;
             //где-то здесь есть работа с АИ
             //отрисовка скилов для каждого персонажа, информация для dropdown и позиций
             if (global.actionDeque.length > 0) {
@@ -205,14 +208,14 @@ export default class DemoGameModule {
 
     loseGame() {
         this.stopGameLoop();
+        document.getElementById('lose').removeAttribute('hidden');
         //createoverlaylose
     }
 
     winGame() {
         setTimeout(function() {
             document.getElementsByClassName('container')[0].setAttribute('class', 'blur container');
-            document.getElementById('menu').removeAttribute('hidden');
-            document.getElementById('menu').innerHTML = 'Вы победили!';
+            document.getElementById('win').removeAttribute('hidden');
         }, 1000);
         this.stopGameLoop();
         //createoverlaywin

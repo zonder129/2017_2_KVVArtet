@@ -1,10 +1,12 @@
 import Utils from './Utils';
 export default class AnimationManager {
-    constructor(Animation, spriteManager, activeTile, state, animations) {
+    constructor(Animation, spriteManager, activeTile, actionPoint, state, animations, texture) {
         this.Animation = Animation;
         this.state = state;
         this.spriteManager = spriteManager;
+        this.texture = texture;
         this.activeTile = activeTile;
+        this.actionPoint = actionPoint;
         this.animations = animations;
         // this.activetile = this.spriteManager.addSprite(12, [-2, -2], this.animations[7], Utils.madeRectangle(0, 0, 1.2 / 16 + 0.04, (1.2/16)*global.ratio - 0.06), true,
         //     Utils.madeRectangle(0, 0, 1/5, -1/4));
@@ -25,6 +27,7 @@ export default class AnimationManager {
         if (this.stateCheck(this.movingTo.bind(this, TileStart, path))) {
             return;
         }
+        this.spriteManager.getSprite(this.actionPoint).setTexture(this.texture);
         let unit = TileStart.unitOnTile;
         for (let i = path.length - 1; i >= 0; i--) {
             if (i == path.length - 1) {

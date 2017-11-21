@@ -3,7 +3,7 @@ import Utils from './Utils';
 import Action from './Action';
 
 export default class UnitManager {
-    constructor(Animation, animationManager, spriteManager, activeTile, state, entities, textures, conditions) {
+    constructor(Animation, animationManager, spriteManager, activeTile, actionPoint, state, entities, textures, conditions) {
         this.Animation = Animation;
         this.units = [];
         this.ratio = 16/9;
@@ -14,6 +14,9 @@ export default class UnitManager {
         this.conditions = conditions;
         this.firstActiveUnit = true;
         this.activeTile = activeTile;
+        this.circle = spriteManager.addSprite(0, Utils.transActiveCircle(0), this.textures[5], Utils.madeRectangle(0, 0, 0.015, -0.015*global.ratio), true);
+        this.actionPoint = actionPoint;
+        this.activeIndex = 0;
         this.possibleMoves = [];
         this.dropMenu = 0;
         this.state = state;
@@ -26,6 +29,7 @@ export default class UnitManager {
             skeleton2: 5
         };
         this.skillbar = [];
+
     }
 
     stateCheck(callback) {
@@ -100,8 +104,9 @@ export default class UnitManager {
 
     addUnit(unit) {
         unit.entity = new Entity();
-        // unit.entity.lowbarId = this.spriteManager.addSprite(0, Utils.transOnLowbar(this.units.length),this.entities[this.indexUnit[unit.class]], Utils.madeRectangle(0, 0, 0.09, -0.09 * this.ratio), true);
+        unit.entity.lowbarId = this.spriteManager.addSprite(0, Utils.transOnLowbar(this.units.length), this.entities[this.indexUnit[unit.class]], Utils.madeRectangle(0, 0, 0.075, -0.075 * this.ratio), true);
         unit.entity.mapId = this.spriteManager.addSprite(unit.ypos, Utils.translationForUnits(unit), this.entities[6 + this.indexUnit[unit.class]], Utils.madeRectangle(0, 0, (1.2 / 9) * 1.7, -(1.2 / 9) * 1.7 * this.ratio), true);
+        unit.entity.lowbarHealthId = this.spriteManager.addColorSprite(0, Utils.transOnLowbarHealth(this.units.length), Utils.madeRectangle(0, 0, 0.075, -0.015), [250 / 255, 44 / 255, 31 / 255, 1.0]);
         unit.entity.healthbarId = this.spriteManager.addColorSprite(unit.ypos, Utils.transForHealthbar(unit), Utils.madeRectangle(0, 0, 1.2 / 16 - 0.006, -0.015), [250 / 255, 44 / 255, 31 / 255, 1.0]);
         this.units.push(unit);
     }
@@ -110,9 +115,12 @@ export default class UnitManager {
         if (this.stateCheck(this.changeActiveUnit.bind(this))) {
             return;
         }
-        let x = this.units[0];
-        this.units.splice(0, 1);
-        this.units.push(x);
+
+
+
+
+
+
         let t = Utils.transOnLowbar(0);
         this.Animation.MoveAnimation(t, [t[0], t[1] + 0.17], 0.5, this.units[this.units.length - 1].entity.lowbarId);
         for (let i = 0; i < this.units.length - 1; i++) {
@@ -205,9 +213,9 @@ export default class UnitManager {
             activeSkillImg.style.position = 'absolute';
             activeSkillImg.style.top = '0';
             activeSkillImg.style.left = 32.5 + 'vw';
-            activeSkillImg.style.width = '3.5vw';
-            activeSkillImg.style.height = '6.5vh';
-            activeSkillImg.src = '/views/singleplay/textures/activeSkill.png';
+            activeSkillImg.style.width = '3.7vw';
+            activeSkillImg.style.height = 3.7*global.ratio + 'vh';
+            activeSkillImg.src = '/views/singleplay/textures/activeTile.png';
             document.body.appendChild(activeSkillImg);
         } else {
             activeSkillImg.style.left = 32.5 + 'vw';
@@ -217,15 +225,21 @@ export default class UnitManager {
             let skillImg = document.createElement('img');
             skillImg.className = 'skill';
             skillImg.style.position = 'absolute';
-            skillImg.style.top = '0.8vh';
-            skillImg.style.left = (i*3.5 + 0.4 + 32.5) + 'vw';
-            skillImg.style.width = '2.7vw';
-            skillImg.style.height = '4.6vh';
+            skillImg.style.top = '1.1vh';
+            skillImg.style.left = (i*3.5 + 0.45 + 32.5) + 'vw';
+            skillImg.style.width = '2.6vw';
+            skillImg.style.height = 2.6*global.ratio + 'vh';
             skillImg.src = '/views/singleplay/icons/' + skill.name + '.png';
             document.body.appendChild(skillImg);
         }.bind(this));
 
         // this.animationManager.animationActiveTile(unit);
+        while(this.units[this.activeIndex % this.units.length].isDead()) {
+            this.activeIndex++;
+        }
+        this.spriteManager.getSprite(this.circle).setTrans(Utils.transActiveCircle(this.activeIndex % this.units.length));
+        this.spriteManager.getSprite(this.actionPoint).setTrans(Utils.transActionPoint(this.activeIndex++ % this.units.length));
+        this.spriteManager.getSprite(this.actionPoint).setTexture(this.textures[6]);
         this.spriteManager.getSprite(this.activeTile).setTrans(Utils.translationOnMap(unit.ypos, unit.xpos));
         document.onmousedown = function(event) {
             let x = event.clientX / window.innerWidth;
@@ -234,7 +248,7 @@ export default class UnitManager {
             let xMax = xMin + 0.6;
             let yMin = (1 - global.mapShiftY)/2;
             let yMax = yMin + 0.8;
-            if (event.which === 1 && x >= xMin && x < xMax && y >= yMin && y < yMax && document.getElementById('menu').hidden && this.dropMenu === 0 && !this.state.AnimationOnMap) {
+            if (event.which === 1 && x >= xMin && x < xMax && y >= yMin && y < yMax && document.getElementById('win').hidden && document.getElementById('lose').hidden && this.dropMenu === 0 && !this.state.AnimationOnMap) {
                 let i = Math.floor(((x - xMin) / 0.6) / (1 / 16));
                 let j = Math.floor(((y - yMin) / 0.8) / (1 / 12));
                 let div = document.createElement('div');
@@ -304,6 +318,7 @@ export default class UnitManager {
     }
 
     unitAttack(nameSkill, sender, target, wounded) {
+        this.spriteManager.getSprite(this.actionPoint).setTexture(this.textures[7]);
         this.updateSkillbar(nameSkill);
         let index = this.indexUnit[sender.unitOnTile.class];
         this.spriteManager.getSprite(sender.unitOnTile.entity.mapId).setTexture(this.conditions[3 * index]);
