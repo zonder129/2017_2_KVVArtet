@@ -10,7 +10,7 @@ class UserService {
         /**
          * Закомментить для обращения к серверу node.js
          */
-        Http.BaseUrl = 'https://kvvartet2017.herokuapp.com';
+        Http.BaseUrl = 'https://landsanddungeons.ru.com/restapi/';
     }
 
     /**
