@@ -204,7 +204,7 @@ export default class DemoGameModule {
             this.gameManager.unitManager.unitAttackAndKill(action.ability.name, action.sender, action.target, deadEnemies, woundedEnemies);
             for(let i = 0; i < deadEnemies.length; i++) {
                 this.initiativeLine.RemoveUnit(deadEnemies[i]);
-            }            //graph.deleteFromLowBar(action.target.getInhabitant().barIndex);
+            }            
         } else {
             GameManager.log('SOMEONE GET WOUNDED: ', woundedEnemies);
             this.gameManager.unitManager.unitAttack(action.ability.name, action.sender, action.target, woundedEnemies);
