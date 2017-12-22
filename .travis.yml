@@ -9,6 +9,12 @@ script:
 - npm run build
 - scp -r ./public/dist root@188.226.148.47:/var/www
 - scp -r ./public/index.html root@188.226.148.47:/var/www
+- scp -r ./public/images root@188.226.148.47:/var/www
+- scp -r ./public/views/singleplay/animations root@188.226.148.47:/var/www
+- scp -r ./public/views/singleplay/confitions root@188.226.148.47:/var/www
+- scp -r ./public/views/singleplay/entity root@188.226.148.47:/var/www
+- scp -r ./public/views/singleplay/icons root@188.226.148.47:/var/www
+- scp -r ./public/views/singleplay/textures root@188.226.148.47:/var/www
 before_install:
 - openssl aes-256-cbc -K $encrypted_627da5e0293a_key -iv $encrypted_627da5e0293a_iv
   -in tecknopark.enc -out $HOME/.ssh/tecknopark -d
