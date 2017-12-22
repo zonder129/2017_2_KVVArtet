@@ -10,7 +10,7 @@ class UserService {
         /**
          * Закомментить для обращения к серверу node.js
          */
-        Http.BaseUrl = 'https://landsanddungeons.ru.com/restapi/';
+        Http.BaseUrl = 'https://landsanddungeons.ru.com/restapi';
     }
 
     /**
