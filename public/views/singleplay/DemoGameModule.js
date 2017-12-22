@@ -163,7 +163,6 @@ export default class DemoGameModule {
         let deadEnemies = [];
         GameManager.log(action.sender.getInhabitant().name + ' make damage');
         GameManager.log('this is damage: ' + action.ability.name);
-        // GameManager.log("health begin: " + action.target.getInhabitant().healthpoint);
 
         //AOE DAMAGE
         if(action.ability.typeOfArea === 'circle') {
