@@ -17,6 +17,7 @@ export default class Background {
 
     InitMapAndSprites() {
         this.engine.addSprite([0, 0], this.textures[4], Utils.madeRectangle(-1, 1, 1, -1));
+        // this.engine.addSprite([0, 0], this.textures[9], Utils.madeRectangle(-1, 1, 1, -1));
         let coord = Utils.madeRectangle(0, 0, 1.2 / 16 - 0.015, -(1.2 / 16 - 0.015) * this.ratio);
         global.tiledMap.forEach(function(item, j) {
             item.forEach(function(value, i) {
@@ -33,8 +34,7 @@ export default class Background {
             this.engine.addColorSprite([global.mapShiftX, i], Utils.madeRectangle(0, 0, 1.2, -0.0018), [1, 1, 1, 1]);
         }
         this.engine.addSprite([-0.6, 0.995], this.textures[5], Utils.madeRectangle(0, 0, 0.1875, -0.13), true);
-        this.engine.addSprite([0.68, 0.97], this.textures[6], Utils.madeRectangle(0, 0, 0.07, -0.07*global.ratio));
-        this.engine.addSprite([0.78, 0.97], this.textures[7], Utils.madeRectangle(0, 0, 0.07, -0.07*global.ratio));
+        // this.engine.addSprite([0.78, 0.97], this.textures[7], Utils.madeRectangle(0, 0, 0.07, -0.07*global.ratio));
         this.engine.addSprite([0.88, 0.97], this.textures[8], Utils.madeRectangle(0, 0, 0.07, -0.07*global.ratio));
     }
 
@@ -45,7 +45,7 @@ export default class Background {
                 loader = new Loader(['/views/singleplay/textures/wall0.png', '/views/singleplay/textures/wall1.png',
                     '/views/singleplay/textures/wall2.png', '/views/singleplay/textures/wall3.png', '/views/singleplay/textures/back1.png',
                     '/views/singleplay/textures/timer.png', '/views/singleplay/icons/talk.png',  '/views/singleplay/icons/bag.png',
-                    '/views/singleplay/icons/settings.png'], this.engine.gl);
+                    '/views/singleplay/icons/settings.png', '/views/singleplay/textures/snow.png'], this.engine.gl);
                 break;
         }
         loader.load(this.onLoad.bind(this));
