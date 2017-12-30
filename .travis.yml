@@ -10,7 +10,6 @@ script:
 - scp -r ./public/dist root@188.226.148.47:/var/www
 - scp -r ./public/index.html root@188.226.148.47:/var/www
 - scp -r ./public/images root@188.226.148.47:/var/www
-- scp -r ./public/service-worker.js root@188.226.148.47:/var/www
 - scp -r ./public/views/singleplay/animations root@188.226.148.47:/var/www/views/singleplay
 - scp -r ./public/views/singleplay/conditions root@188.226.148.47:/var/www/views/singleplay
 - scp -r ./public/views/singleplay/entity root@188.226.148.47:/var/www/views/singleplay
