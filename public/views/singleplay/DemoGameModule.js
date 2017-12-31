@@ -154,6 +154,7 @@ export default class DemoGameModule {
         let deadEnemies = [];
         GameManager.log(action.sender.getInhabitant().name + ' make damage');
         GameManager.log('this is damage: ' + action.ability.name);
+        // GameManager.log("health begin: " + action.target.getInhabitant().healthpoint);
 
         //AOE DAMAGE
         if(action.ability.typeOfArea === 'circle') {
@@ -192,7 +193,7 @@ export default class DemoGameModule {
             this.gameManager.unitManager.unitAttackAndKill(action.ability.name, action.sender, action.target, deadEnemies, woundedEnemies);
             for(let i = 0; i < deadEnemies.length; i++) {
                 this.initiativeLine.RemoveUnit(deadEnemies[i]);
-            }            
+            }            //graph.deleteFromLowBar(action.target.getInhabitant().barIndex);
         } else {
             this.gameManager.unitManager.unitAttack(action.ability.name, action.sender, action.target, woundedEnemies);
         }
