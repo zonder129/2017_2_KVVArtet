@@ -6,6 +6,7 @@ script:
 - ssh-keyscan -H 188.226.148.47 >> ~/.ssh/known_hosts
 - chmod 600 $HOME/.ssh/tecknopark
 - ssh-add $HOME/.ssh/tecknopark
+- npm install node-sass
 - npm run build
 - scp -r ./public/dist root@188.226.148.47:/var/www
 - scp -r ./public/index.html root@188.226.148.47:/var/www
