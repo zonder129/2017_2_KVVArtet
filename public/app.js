@@ -15,7 +15,6 @@ function requireAll(r) { r.keys().forEach(r); }
 require('./views/main.js');
 require('./css/base.css');
 
-//wtf
 requireAll(require.context('./blocks/', true, /\.(css)$/));
 requireAll(require.context('./blocks/', true, /\.(scss)$/));
 requireAll(require.context('./modules/', true, /\.(js)$/));
