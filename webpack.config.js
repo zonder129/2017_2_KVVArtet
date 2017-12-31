@@ -1,5 +1,5 @@
 'use strict';
-//work
+
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = {
     context: __dirname,
