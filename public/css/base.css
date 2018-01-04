@@ -16,7 +16,7 @@ html {
     100% {background-position: 500px 1000px, 400px 400px, 300px 300px;}
 }
 
-html, body {
+html {
     background-image: url(../images/snowflake.png), url(../images/snowflake3.png), url(../images/snowflake2.png);
     height: 100%;
     animation: snow 20s linear infinite;

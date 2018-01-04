@@ -13,7 +13,7 @@ export default class Transport {
 
 
         this.mediator = new Mediator;
-        this.url = "wss:https://kvvartet2017.herokuapp.com/game";
+        this.url = "wss:https://landsanddungeons.ru.com/restapi/game";
         this.ws = new WebSocket(this.url);
         this.open();
     }

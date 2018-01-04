@@ -48,7 +48,7 @@ class UserService {
      */
     logout(username,password) {
         console.log('logout work')
-        return Http.Delete('/signout', {username,password});
+        return Http.Delete('/signout', {});
     }
 
 

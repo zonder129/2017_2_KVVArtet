@@ -5,7 +5,7 @@ import './scoreboard.scss';
 //const score= new UserService();
 
 
-const rowValues = [`Username`,`Frags`,`Gold`]
+const rowValues = [`Username`,`Frags`,`Gold`];
 //  const buttons = [`first`,`second`,`third`,`four`];
 // const data  = [{username:'gamer',gold:0,frags:0},{username:'lammer',gold:110,frags:8989},{username:'lammer96',gold:1680,frags:1560}]
 
@@ -138,7 +138,7 @@ class Scoreboard extends Block {
        // const table = new Block(document.querySelector('table.table'));
 const newT = document.querySelector('table.table');
 
-        const url = ('https://kvvartet2017.herokuapp.com' || `${window.location.protocol}//${window.location.host}`) + '/scoreboard';
+        const url = ('https://landsanddungeons.ru.com/restapi' || `${window.location.protocol}//${window.location.host}`) + '/scoreboard';
         if (typeof window.fetch !== 'undefined') {
 
             fetch(url, {
@@ -212,47 +212,5 @@ const newT = document.querySelector('table.table');
     }
 
 }
-
-// function setCookie(name, value, options) {
-//     options = options || {};
-//
-//     var expires = options.expires;
-//
-//     if (typeof expires == "number" && expires) {
-//         var d = new Date();
-//         d.setTime(d.getTime() + expires * 1000);
-//         expires = options.expires = d;
-//     }
-//     if (expires && expires.toUTCString) {
-//         options.expires = expires.toUTCString();
-//     }
-//
-//     value = encodeURIComponent(value);
-//
-//     var updatedCookie = name + "=" + value;
-//
-//     for (var propName in options) {
-//         updatedCookie += "; " + propName;
-//         var propValue = options[propName];
-//         if (propValue !== true) {
-//             updatedCookie += "=" + propValue;
-//         }
-//     }
-//
-//     document.cookie = updatedCookie;
-// }
-//
-// function deleteCookie(name) {
-//     setCookie(name, "", {
-//         expires: -1
-//     })
-// }
-//
-// function getCookie(name) {
-//     var matches = document.cookie.match(new RegExp(
-//         "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-//     ));
-//     return matches ? decodeURIComponent(matches[1]) : undefined;
-// }
 
 export default Scoreboard;

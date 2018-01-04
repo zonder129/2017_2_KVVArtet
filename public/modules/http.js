@@ -1,5 +1,3 @@
-import Validate from '../blocks/forms/validation';
-
 const baseUrl = `${window.location.protocol}//${window.location.host}`;
 /**
  * Класс, предоставляющий методы для выполнения HTTP-запросов
@@ -142,19 +140,14 @@ class Http {
                 'Content-Type': 'application/json; charset=utf-8',
                 'Accept' : 'application/json'
             }
-        })
-            .then(function (response) {
-                console.log("fetch post work\n");
-                console.log(response.status);
-                if ( response.status === 200 ) {
+        }).then(function (response) {
+                if (response.status === 200 ) {
                     return;
                 }
-                else if (response.status >= 400){
-                    Validate.userError();
-                    let json = response.json();
-                    return json.then(response => {throw response;});
+                else if (response.status >= 400) {
+                    throw response;
                 }
-            })
+            });
     }
 
     static _FetchDelete(body, url) {

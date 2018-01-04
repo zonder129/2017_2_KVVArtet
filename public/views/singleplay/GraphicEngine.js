@@ -5,6 +5,7 @@ import {Sprite,Attribute,Uniform} from './Sprite'
 import "./global.js"
 export default  class GraphicEngine {
   constructor(idCanvas, loop) {
+    global.demon++;
     this.sprites = [];
     this.loop = loop;
     this.gl = document.getElementById(idCanvas).getContext("webgl");
@@ -43,7 +44,7 @@ export default  class GraphicEngine {
     //   chat.innerHTML += '<span style=\'color:' + 'white' + ';\'>' + (1 / deltaTime).toFixed(0) + '</span><br>';
     //   chat.scrollTop = chat.scrollHeight;
     // }
-      console.log("Demon render");
+      console.log("Demon render " + global.demon);
 
     Utils.resize(this.gl);
     this.gl.clearColor(0, 0, 0, 0);

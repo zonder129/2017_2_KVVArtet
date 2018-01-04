@@ -15,20 +15,20 @@ const MIN_PASSWORD_LENGTH = 4;
  */
 class Validate {
 
-static userError () {
+static userError (error) {
     let form;
     const div = document.createElement('div');
     if (document.querySelector('form.login') === null && document.getElementsByTagName('p').length === 0) {
         form = document.querySelector('form.registration');
         div.className = "message-error";
-        div.innerHTML = "<p> Sorry,user is already exist </p> ";
+        div.innerHTML = `<p>${error}</p>`;
         form.appendChild(div);
     }
 
     else if (document.querySelector('form.registration') === null && document.getElementsByTagName('p').length === 0){
         form = document.querySelector('form.login');
         div.className = "message-error";
-        div.innerHTML = "<p> Sorry,user is not found </p> ";
+        div.innerHTML = `<p>${error}</p>`;
         form.appendChild(div);
 
     }

@@ -1,5 +1,5 @@
 import {signin ,signup }from  '../views/main'
-import Custom from '../views/custom-module/custom-module'
+import UserService from '../servises/user-service';
 export default  class Router {
 
     constructor() {
@@ -49,6 +49,30 @@ export default  class Router {
     }
 
     go(path) {
+        setTimeout(function() {
+            if (!document.getElementById('user-menu')) {
+                fetch('https://landsanddungeons.ru.com/restapi/session', {
+                    method: 'POST',
+                    mode: 'cors',
+                    credentials: 'include'
+                }).then(response => {
+                    if (response.status === 200) {
+                        return response.text();
+                    }
+                }).then(data => {
+                    if (data) {
+                        let username = data.substring(data.indexOf('login is') + 9, data.length);
+
+                        document.body.innerHTML += `<div id="user-menu" style="position:absolute;top: 0;  background: white;right: 0;background-color: #83c0f6;border-radius: 5px;"><p style="margin: 4px;">${username}</p><a id="logout">Logout</a></div>`;
+                        document.getElementById('logout').addEventListener('click', function () {
+                            document.getElementById('user-menu').remove();
+                            new UserService().logout();
+                            new Router().go('/');
+                        });
+                    }
+                });
+            }
+        }, 300);
         const view = this.routes.get(path);
         if (!view) {
             document.body.innerHTML = '<h class="notfound"> We didnot do such page )';

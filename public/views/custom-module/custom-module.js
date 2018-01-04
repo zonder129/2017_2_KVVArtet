@@ -7,6 +7,9 @@ class Custom extends Block {
     }
 
     creation(text, href) {
+        if (document.querySelector('div.win')) {
+            return;
+        }
         const wrape = document.querySelector('div.wrapper');
         document.body.style.height = '100%';
         document.body.appendChild(this._element);

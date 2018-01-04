@@ -41,9 +41,7 @@ const typeGame = new GameType();
 //     });
 
 const router = new  Router();
-for (let i = 0; i < 100;++i){
-    router.register(`/scoreboard/${i}`, scoreboard);
-}
+
 router.register('/', mainMenu)
     .register('/login', login)
     .register('/signup', signup)
@@ -53,7 +51,9 @@ router.register('/', mainMenu)
     .register('/scoreboard/1',scoreboard)
     .register('/scoreboard/2',scoreboard)
     .register('/scoreboard/3',scoreboard)
-
+    .register('/scoreboard/4',scoreboard)
+    .register('/scoreboard/5',scoreboard)
+    .register('/scoreboard/6',scoreboard)
     .register('/mode',typeGame)
     .navigate();
 
