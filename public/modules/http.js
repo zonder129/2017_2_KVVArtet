@@ -21,7 +21,7 @@ class Http {
         const url = (Http.BaseUrl || baseUrl) + address;
 
         if (typeof window.fetch !== 'undefined') {
-            console.log("function DELETE work");
+            //console.log("function DELETE work");
             return this._FetchDelete(body, url);
         }
         return false;
@@ -35,7 +35,7 @@ class Http {
     static Post(address, body) {
         const url = (Http.BaseUrl || baseUrl) + address;
         if (typeof window.fetch !== 'undefined') {
-            console.log("function post work");
+           // console.log("function post work");
           //  console.log(this._FetchPost(body, url))
             return this._FetchPost(body, url);
         }
@@ -117,7 +117,7 @@ class Http {
                 }
             json.then(function(dt) {
                    dt = data
-                    console.log(dt.userID);
+                    //console.log(dt.userID);
                 });
                 return json;
             });
@@ -130,7 +130,7 @@ class Http {
      * @return {Promise}
      */
     static _FetchPost(body, url) {
-        console.log( JSON.stringify(body));
+        //console.log( JSON.stringify(body));
         return fetch(url, {
             method: 'POST',
             mode: 'cors',
@@ -151,7 +151,7 @@ class Http {
     }
 
     static _FetchDelete(body, url) {
-        console.log( JSON.stringify(body));
+        //console.log( JSON.stringify(body));
         return fetch(url, {
             method: 'DELETE',
             mode: 'cors',
@@ -163,8 +163,8 @@ class Http {
             }
         })
             .then(function (response) {
-                console.log("fetch Delete work\n");
-                console.log(response.status);
+                //console.log("fetch Delete work\n");
+                //console.log(response.status);
                 if ( response.status === 200 ) {
                     return;
                 }
